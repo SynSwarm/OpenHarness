@@ -109,17 +109,27 @@ Adjust paths if your monorepo nests OpenHarness as a submodule.
 
 ---
 
-## 8. Roadmap (may move into separate files)
+## 8. Ecosystem roadmap (non-normative)
 
-- **HTTP transport profile** (informative): recommended headers mapping to `correlation_id` / tracing.
-- **Integration tests** in CI validating `examples/**/*.json` against the Schema (contributions welcome).
-- **OpenAPI** for a chosen HTTP mapping (optional; not required by core protocol).
+**Done in-repo**
+
+- **CI:** `.github/workflows/validate-examples.yml` runs **`python scripts/validate_examples.py`** on every push/PR (`pip install -r requirements-dev.txt`). This prevents **golden JSON drifting** from **`schema/openharness-v1.draft.json`**.
+- **Fixtures:** `examples/minimal/response-error.json`, `response-protocol-unsupported.json`, `im-cli/response-capability-denials.json` cover common **error** and **negotiation** paths (not only success).
+- **HTTP hints (informative):** **[profiles/http-transport.md](../profiles/http-transport.md)** — optional correlation/header mapping; wire JSON remains transport-agnostic.
+
+**Still optional / TBD**
+
+- **OpenAPI** for a chosen HTTP mapping (per Engine deployment) — convenience for codegen, not required by the core protocol.
+- **Streaming profile** for `openharness.streaming` — see PROTOCOL §15; product-specific until a shared profile lands.
+- **Central registry** of every `action_type` worldwide — not required; interoperability relies on **Engine truth tables** + **namespaced** types (PROTOCOL §12).
 
 ---
 
 ## 中文
 
 **性质：** 资料性；**权威规范** 仍为 **[PROTOCOL.md](../PROTOCOL.md)**。边界见 **[SCOPE.md](../SCOPE.md)**，分层见 **[OVERVIEW.md](../OVERVIEW.md)**。
+
+**生态路线图（与 §8 对应）：** 仓库已含 **CI Schema 校验**（`.github/workflows/validate-examples.yml`）、**错误/协商类金样**、**HTTP 传输提示**（[http-transport.md](../profiles/http-transport.md)）。OpenAPI、流式 profile、更多示例仍为可选贡献项。
 
 ### 面向谁
 
@@ -132,12 +142,11 @@ OpenHarness 维护者、第三方 **Harness**、**Shell/CLI/机器人适配器**
 ### 核心建议
 
 1. **阅读顺序**：先 PROTOCOL → 再 Schema → 再 **`examples/`** → **`im-bot-shell` profile**。  
-2. **金样 JSON**：契约测试与 **AI 上下文**；路径为 **`examples/im-cli/`**（原 IM 风格示例，无厂商名）。  
+2. **金样 JSON**：契约测试与 **AI 上下文**；含 **成功 / 错误 / capability_denials** 等（见 **`examples/README.md`**）。**CI** 已用 Schema 校验全部金样。  
 3. **清单**：第四节、第五节可作任务列表。  
 4. **反模式表**：第六节。  
 5. **可复制提示块**：第七节英文块可贴进 Cursor / Copilot。
 
 ### 我们（OpenHarness 维护者）还能补什么
 
-- 更多 `examples/` 金样；CI **Schema 校验**（欢迎 PR）。  
-- 可选 **HTTP Profile**、OpenAPI —— 与传输无关的核心一致。
+- 见上文 **§8 生态路线图**：OpenAPI、流式 profile、更多金样等（欢迎 PR）；**HTTP 提示** 已有 **[http-transport.md](../profiles/http-transport.md)**。

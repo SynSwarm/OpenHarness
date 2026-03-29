@@ -1,0 +1,30 @@
+{
+  "protocol_version": "1.0.0",
+  "request_id": "req_im_cli_002",
+  "correlation_id": "corr_im_002",
+  "supported_protocol_versions": ["1.0.0"],
+  "supported_capabilities": {
+    "openharness.attachments.upload": true
+  },
+  "capability_denials": [
+    {
+      "capability": "openharness.ui.rich_cards",
+      "code": "not_supported",
+      "message": "This engine build has no rich-card renderer."
+    }
+  ],
+  "response": {
+    "status": "success",
+    "engine_latency_ms": 40,
+    "action_directives": [
+      {
+        "action_type": "render_message",
+        "priority": "normal",
+        "risk_tier": "safe",
+        "payload": {
+          "text": "Plain text only; cards unavailable in this deployment."
+        }
+      }
+    ]
+  }
+}

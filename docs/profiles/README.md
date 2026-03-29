@@ -5,6 +5,7 @@
 | Document | Topic |
 |----------|--------|
 | **[im-bot-shell.md](./im-bot-shell.md)** | IM / bot-platform Shell: tenant & chat mapping to `context`, transport vs platform API, attachments, Engine capability truth table (vendor-neutral). |
+| **[http-transport.md](./http-transport.md)** | Optional HTTP(S): suggested correlation / tracing headers (informative; core protocol remains transport-agnostic). |
 
 Additional profiles may be added (e.g. desktop automation) — recommended `action_type` names and `payload` shapes for deployments that declare the right **`capabilities`**. See **[OVERVIEW.md](../OVERVIEW.md)**.
 

@@ -20,7 +20,8 @@ See **`docs/guides/AI_INTEGRATION.md`** and golden JSON under **`examples/`** be
 2. Mirror substantive changes in **`docs/PROTOCOL.zh.md`**.  
 3. Update **`schema/openharness-v1.draft.json`** as needed.  
 4. Update **`examples/**/*.json`** so golden samples remain consistent.  
-5. If README or cross-links need updates, include them in the same PR.
+5. Run **`pip install -r requirements-dev.txt`** (PyPI) and **`python scripts/validate_examples.py`** — CI enforces the same check via **`.github/workflows/validate-examples.yml`**.  
+6. If README or cross-links need updates, include them in the same PR.
 
 Keep changes focused; avoid drive-by refactors unrelated to the protocol change.
 

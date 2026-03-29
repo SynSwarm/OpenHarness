@@ -1,0 +1,16 @@
+{
+  "protocol_version": "1.0.0",
+  "request_id": "req_bad_payload_001",
+  "correlation_id": "corr_bad_001",
+  "response": {
+    "status": "error",
+    "error": {
+      "code": "invalid_request",
+      "message": "Missing required field in context.",
+      "retryable": false,
+      "details": {
+        "field": "context.user_intent"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "protocol_version": "1.0.0",
+  "request_id": "req_old_proto_001",
+  "supported_protocol_versions": ["1.0.0"],
+  "response": {
+    "status": "error",
+    "error": {
+      "code": "protocol_version_unsupported",
+      "message": "This engine accepts 1.0.x wire format only.",
+      "retryable": false
+    }
+  }
+}
