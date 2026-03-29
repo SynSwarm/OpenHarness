@@ -6,6 +6,19 @@
 
 ---
 
+## Gateway scope — Shell ↔ Engine, not “OpenClaw + TV only”
+
+The **operator gateway** (HTTPS origin exposing pairing and **`POST …/v1/openharness`**, or your equivalent paths) is **Shell- and Engine-agnostic**:
+
+- **Any conformant Shell** can use it: TV, phone, desktop, IM bot, CLI — anything that sends **OpenHarness `request`** JSON over **HTTP(S)**.
+- **Any Harness Engine** can sit behind it: **OpenClaw + `bridge-server`** is **one** integration pattern; you can route to **other** Engine implementations (custom orchestration, another agent stack) as long as they **speak the same wire contract** per **[PROTOCOL.md](../PROTOCOL.md)**.
+
+**Pairing** is **product-level** (issue device tokens); it is **not** “TV-only.” **OpenClaw** is **not** part of the protocol — it is **one possible backend** behind your gateway when you choose that stack.
+
+Documents in this repo sometimes use **OpenClaw + TV** as a **worked example** because that is a common onboarding path; the **same gateway URLs** apply whenever you standardize on one public entry for **all** your Shells and Engines.
+
+---
+
 ## 1. Where the misunderstanding comes from
 
 A common first draft looks like:
@@ -93,7 +106,39 @@ Merging pairing + bridge into **one Python process** is possible later; **not re
 
 ---
 
+## 7. Example: public gateway URLs (operator-owned domain — `deskharness.com`)
+
+This section is **one concrete deployment sketch** for an operator who controls **`deskharness.com`**. It is **not** a global OpenHarness mandate; paths and hostnames are **your** TLS and reverse-proxy mapping.
+
+**Idea:** expose a **single HTTPS origin** to **all** your Shells (TV, phones, CLI, bots, …) and route internally to **`pair-server`** and **`bridge-server`** (or **your** production pairing + Engine gateway). The Engine behind the bridge may be **OpenClaw** or **another** Harness implementation — the **public URL** is still the same **OpenHarness** entry for every client.
+
+| Surface | Example public URL | Maps to (typical local) |
+|---------|-------------------|-------------------------|
+| Pairing: create code | `POST https://gw.deskharness.com/pair/create` | `pair-server` → `/pair/create` |
+| Pairing: confirm | `POST https://gw.deskharness.com/pair/confirm` | `pair-server` → `/pair/confirm` |
+| OpenHarness dialogue | `POST https://gw.deskharness.com/v1/openharness` | `bridge-server` → `/v1/openharness` |
+| Health (if exposed) | `GET https://gw.deskharness.com/health` | Your choice (pair or bridge health) |
+
+**Why one host:** TVs and users remember **one base**; you terminate TLS once (e.g. **Let’s Encrypt** on **`gw.deskharness.com`**) and split traffic in **nginx / Caddy / cloud LB** by path to two upstream ports (**8790** / **8788** in the reference layout).
+
+**Shell configuration (conceptual):**
+
+- **`PAIR_BASE_URL`** = `https://gw.deskharness.com` (any Shell calls `pair-create` against this origin).
+- **`OPENHARNESS_POST_URL`** = `https://gw.deskharness.com/v1/openharness` (Bearer token from pairing; same pattern as `bridge-server`).
+
+**OpenClaw** remains **on the server side** behind the bridge; **`OPENCLAW_HTTP_URL`** is usually **`http://127.0.0.1:…`** on the same machine as `bridge-server`, **not** a public URL.
+
+**Alternate layout:** `https://api.deskharness.com/...` or `https://deskharness.com/gw/...` — equivalent if your reverse proxy preserves the **`pair-server`** / **`bridge-server`** path contract.
+
+---
+
 ## 中文
+
+### 网关范围：Shell ↔ Harness 通用，不是「只给 OpenClaw + 电视」
+
+对外暴露的 **HTTPS 网关**（配对 + `POST …/v1/openharness`）面向 **所有符合协议的 Shell**（电视、手机、桌面、IM 机器人、CLI 等），背后也可以是 **任意 Harness Engine**。**OpenClaw + `bridge-server`** 只是 **一种** 后端接法；你们也可以把流量接到 **自研或其它** 引擎，只要线格式仍是 **PROTOCOL**。
+
+文档里常用 **OpenClaw + 电视** 做 **示例**，因为好讲；**同一套公网 URL** 仍可作为你们所有 Shell 与所有 Engine 的统一入口（由网关按租户/路由策略转发）。
 
 ### 偏差从哪来
 
@@ -115,6 +160,22 @@ Merging pairing + bridge into **one Python process** is possible later; **not re
 ### Cursor / OpenClaw 技能文件
 
 让技能 **链接本文 + adapter README + implementer-orientation**，避免重复造一套命名冲突的 `openharness_server.py` 而不知道对应 **`bridge-server` + `pair-server`**。
+
+### 公网 URL 示例（运营方域名 `deskharness.com`）
+
+**性质：** 下面是 **运营方自建网关** 的一种写法，**不是** 协议强制全局域名。
+
+对外可以给 Shell 配 **同一 HTTPS 源站**（示例子域 **`gw.deskharness.com`**），路径与参考实现一致：
+
+| 用途 | 示例 URL |
+|------|----------|
+| 发码 | `POST https://gw.deskharness.com/pair/create` |
+| 确认配对 | `POST https://gw.deskharness.com/pair/confirm` |
+| OpenHarness 对话 | `POST https://gw.deskharness.com/v1/openharness` |
+
+反代按路径转到本机 **`pair-server`** / **`bridge-server`**（或你们自研的等价服务）即可。**OpenClaw** 若使用，仍在桥后内网；**不是** 所有部署都必须用 OpenClaw。
+
+也可用 **`api.deskharness.com`** 或主域路径前缀，只要路径语义与示例服务一致。
 
 ---
 
