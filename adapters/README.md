@@ -65,7 +65,8 @@ Engine deployment (base URL, TLS, **`credential_ref`** resolution) remains **out
 
 | Adapter / repo | Platform / language | Notes |
 |----------------|---------------------|--------|
-| *(none in-tree yet)* | — | Add your project here or link an external repository. |
+| **[openharness-adapter-openclaw](./openharness-adapter-openclaw/)** | Python (Shell-side helper) | **Integrator-owned** OpenClaw ↔ OpenHarness: **`bridge-*`**, optional **`pair-server`** (SQLite pairing example), **`demo-*`**; pairing → **[device-pairing-session.md](../docs/guides/device-pairing-session.md)**. |
+| **[openharness-adapter-android-tv](./openharness-adapter-android-tv/)** | Android TV (guidance only) | README: reading order + Shell checklist; implement APK in a **separate repo** and link here. |
 
 ---
 
@@ -99,4 +100,4 @@ Engine deployment (base URL, TLS, **`credential_ref`** resolution) remains **out
 
 ### 登记（资料性）
 
-上表 **Registry**：有 **in-tree** 或 **外链** 项目时在此登记一行即可。
+上表 **Registry**：有 **in-tree** 或 **外链** 项目时在此登记一行即可。当前 in-tree：**[openharness-adapter-openclaw](./openharness-adapter-openclaw/)**（Python CLI；**对接由集成方自建**，上游不自带 OpenHarness）、**[openharness-adapter-android-tv](./openharness-adapter-android-tv/)**（指引文档；具体开发另建仓库后在此挂链）。

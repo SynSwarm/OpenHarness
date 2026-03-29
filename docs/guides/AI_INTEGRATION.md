@@ -18,6 +18,8 @@
 | 4 | **[SCOPE.md](../SCOPE.md)** | What belongs in the protocol repo vs your product adapter |
 | 5 | **[shell-at-scale.md](./shell-at-scale.md)** | Where to put guides vs profiles for Shells **at scale** (CLI, bots, multi-tenant); keeps PROTOCOL vendor-neutral |
 | 6 | **[profiles/im-bot-shell.md](../profiles/im-bot-shell.md)** | Vendor-neutral: who maps platform IDs into `context`, who documents transport to the Engine, attachment pipelines, Engine truth tables |
+| 7 | **[profiles/feishu-lark-cli.md](../profiles/feishu-lark-cli.md)** | Optional: [larksuite/cli](https://github.com/larksuite/cli) (Lark/Feishu Open Platform CLI) → OpenHarness field mapping |
+| 8 | **[device-pairing-session.md](./device-pairing-session.md)** | Optional: TV/device pairing codes, long-lived device tokens, stable `session_id` — **informative**; does not change PROTOCOL |
 
 Skipping (2) and fixtures often causes **valid-looking** but **non-interoperable** clients.
 
@@ -105,6 +107,7 @@ Do not put base64 blobs or long-lived API secrets in the JSON body; use attachme
 Use examples/minimal/ and examples/im-cli/ as golden references.
 Read docs/guides/shell-at-scale.md for where guides vs profiles go (CLI, bots, multi-tenant).
 Read docs/profiles/im-bot-shell.md for Shell vs Engine responsibilities on IM/bot integrations.
+If integrating via the official Lark/Feishu CLI (larksuite/cli), also read docs/profiles/feishu-lark-cli.md.
 ```
 
 Adjust paths if your monorepo nests OpenHarness as a submodule.
@@ -146,7 +149,7 @@ OpenHarness 维护者、第三方 **Harness**、**Shell/CLI/机器人适配器**
 
 ### 核心建议
 
-1. **阅读顺序**：先 PROTOCOL → 再 Schema → 再 **`examples/`** → **[shell-at-scale.md](./shell-at-scale.md)**（规模化 Shell 资料放哪）→ **`im-bot-shell` profile**。  
+1. **阅读顺序**：先 PROTOCOL → 再 Schema → 再 **`examples/`** → **[shell-at-scale.md](./shell-at-scale.md)**（规模化 Shell 资料放哪）→ **`im-bot-shell` profile**；若使用 **官方 Lark/Feishu CLI**（[larksuite/cli](https://github.com/larksuite/cli)），可加 **[feishu-lark-cli.md](../profiles/feishu-lark-cli.md)**；若涉及 **电视/设备配对与长期会话**，见 **[device-pairing-session.md](./device-pairing-session.md)**（资料性建议）。  
 2. **金样 JSON**：契约测试与 **AI 上下文**；含 **成功 / 错误 / capability_denials** 等（见 **`examples/README.md`**）。**CI** 已用 Schema 校验全部金样。  
 3. **清单**：第四节、第五节可作任务列表。  
 4. **反模式表**：第六节。  

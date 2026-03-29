@@ -25,6 +25,7 @@
 | **Architecture overview (informative)** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
 | **AI / third-party integration guide** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
 | **Shell-at-scale integration guide (meta, informative)** | [docs/guides/shell-at-scale.md](./docs/guides/shell-at-scale.md) |
+| **Device pairing & long-lived sessions (informative)** | [docs/guides/device-pairing-session.md](./docs/guides/device-pairing-session.md) |
 | **IM/bot Shell profile (informative)** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **HTTP transport hints (informative)** | [docs/profiles/http-transport.md](./docs/profiles/http-transport.md) |
 | **Lark/Feishu CLI profile (informative)** | [docs/profiles/feishu-lark-cli.md](./docs/profiles/feishu-lark-cli.md) |
@@ -189,6 +190,7 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 | **架构总览（资料性）** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
 | **AI / 第三方集成指引** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
 | **规模化 Shell 集成指引（元文档，资料性）** | [docs/guides/shell-at-scale.md](./docs/guides/shell-at-scale.md) |
+| **设备配对与长期会话（资料性建议）** | [docs/guides/device-pairing-session.md](./docs/guides/device-pairing-session.md) |
 | **IM/机器人 Shell Profile（资料性）** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **HTTP 传输提示（资料性）** | [docs/profiles/http-transport.md](./docs/profiles/http-transport.md) |
 | **飞书 / Lark CLI 对接提示（资料性）** | [docs/profiles/feishu-lark-cli.md](./docs/profiles/feishu-lark-cli.md) |
