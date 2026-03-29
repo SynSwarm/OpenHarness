@@ -1,0 +1,45 @@
+{
+  "protocol_version": "1.0.0",
+  "request_id": "req_feishu_cli_001",
+  "correlation_id": "corr_feishu_001",
+  "capabilities": {
+    "openharness.ui.rich_cards": true,
+    "openharness.attachments.upload": true
+  },
+  "request": {
+    "auth": {
+      "tenant_id": "tenant_t888",
+      "credential_ref": "cred_ref_from_transport"
+    },
+    "context": {
+      "session_id": "sess_user_abc",
+      "conversation_id": "conv_chat_xyz",
+      "user_intent": "Continue the workflow from the last card.",
+      "task_hint": {
+        "sop_id": "sop_onboard",
+        "business_key": "deal_42"
+      },
+      "continuation": {
+        "run_id": "run_7d2",
+        "continuation_token": "ctok_aq9"
+      },
+      "shell": {
+        "shell_kind": "feishu_cli",
+        "shell_version": "0.4.0",
+        "locale": "zh-CN",
+        "timezone": "Asia/Shanghai"
+      },
+      "attachments": [
+        {
+          "ref_id": "att_upload_01",
+          "mime_type": "application/pdf",
+          "filename": "brief.pdf"
+        }
+      ],
+      "environment_state": {
+        "privacy_tier": "restricted",
+        "active_window": "Feishu"
+      }
+    }
+  }
+}

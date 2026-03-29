@@ -78,7 +78,8 @@ Document roadmap items in **profiles** or a **separate execution-feedback note**
 1. **[PROTOCOL.md](./PROTOCOL.md)** — authoritative wire format.  
 2. **[SCOPE.md](./SCOPE.md)** — what belongs in this repository vs Engine products.  
 3. **This OVERVIEW** — narrative and layering; use for onboarding and whitepaper-style explanations.  
-4. **Profiles** (as they appear) — optional, scenario-specific recommendations.
+4. **[guides/AI_INTEGRATION.md](./guides/AI_INTEGRATION.md)** — third-party Harness / Shell / **AI-assisted** implementation checklist and golden examples.  
+5. **Profiles** (as they appear) — optional, scenario-specific recommendations.
 
 ---
 
@@ -117,4 +118,5 @@ v1 **正文** 以 **请求—响应** 为主；「执行完再推一帧标准事
 1. **PROTOCOL.md**（权威）  
 2. **SCOPE.md**（边界）  
 3. **本文**（叙事与分层）  
-4. **各 Profile**（随仓库增补）
+4. **guides/AI_INTEGRATION.md**（第三方 / AI 辅助集成与金样）  
+5. **各 Profile**（随仓库增补）

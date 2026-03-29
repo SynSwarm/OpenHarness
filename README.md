@@ -23,6 +23,8 @@
 | **协议（中文，对照译文）** | [docs/PROTOCOL.zh.md](./docs/PROTOCOL.zh.md) |
 | **Scope & boundaries (informative)** | [docs/SCOPE.md](./docs/SCOPE.md) |
 | **Architecture overview (informative)** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
+| **AI / third-party integration guide** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
+| **Example messages (golden JSON)** | [examples/README.md](./examples/README.md) |
 | **JSON Schema (draft)** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
 Unless a file header says otherwise, spec text and schemas in this repository are licensed under the [MIT License](./LICENSE).
@@ -178,6 +180,8 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 | **中文对照** | [docs/PROTOCOL.zh.md](./docs/PROTOCOL.zh.md) |
 | **范围与边界（资料性）** | [docs/SCOPE.md](./docs/SCOPE.md) |
 | **架构总览（资料性）** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
+| **AI / 第三方集成指引** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
+| **示例消息（金样 JSON）** | [examples/README.md](./examples/README.md) |
 | **JSON Schema（草案）** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
 除文件头另有说明外，本仓库中的规范文本与 Schema 与根目录 [LICENSE](./LICENSE)（MIT）一致。

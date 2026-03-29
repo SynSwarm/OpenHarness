@@ -1,0 +1,25 @@
+{
+  "protocol_version": "1.0.0",
+  "request_id": "req_feishu_cli_001",
+  "correlation_id": "corr_feishu_001",
+  "supported_protocol_versions": ["1.0.0"],
+  "supported_capabilities": {
+    "openharness.ui.rich_cards": true,
+    "openharness.attachments.upload": true
+  },
+  "capability_denials": [],
+  "response": {
+    "status": "success",
+    "engine_latency_ms": 95,
+    "action_directives": [
+      {
+        "action_type": "render_message",
+        "priority": "normal",
+        "risk_tier": "safe",
+        "payload": {
+          "text": "Next step: confirm your email in the card below."
+        }
+      }
+    ]
+  }
+}
