@@ -1,0 +1,26 @@
+---
+description: OpenHarness normative spec, AI integration guide, and golden JSON examples
+alwaysApply: true
+---
+
+# OpenHarness repository context
+
+This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). It is **not** a specific Engine product (e.g. DeskHarness, fastClaw).
+
+## Sources of truth
+
+- **Normative:** `docs/PROTOCOL.md` (English, authoritative) and `docs/PROTOCOL.zh.md` (Chinese mirror).
+- **Schema:** `schema/openharness-v1.draft.json` — validate request vs response messages **separately** (root is `oneOf`).
+- **Scope / layering:** `docs/SCOPE.md`, `docs/OVERVIEW.md` (informative).
+
+## Implementing adapters or examples (humans + AI)
+
+- Read **`docs/guides/AI_INTEGRATION.md`** — checklists, anti-patterns, and a copy-paste prompt block.
+- Use **`examples/minimal/`** and **`examples/feishu-cli/`** as golden JSON references; do not invent fields that contradict PROTOCOL.
+- **§11 unknown `action_type`:** never execute side effects for unknown directive types.
+- **Attachments:** references only in the body — no large base64 payloads (`PROTOCOL` §9.1).
+- **Capabilities:** handle `capability_denials` / `supported_capabilities`; avoid silent half-features.
+
+## When changing the wire format
+
+Update in one PR: `docs/PROTOCOL.md`, `docs/PROTOCOL.zh.md`, `schema/openharness-v1.draft.json`, and **relevant `examples/*.json`** so fixtures stay valid.

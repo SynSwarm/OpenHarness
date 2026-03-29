@@ -29,6 +29,8 @@
 
 Unless a file header says otherwise, spec text and schemas in this repository are licensed under the [MIT License](./LICENSE).
 
+**Contributing:** see [CONTRIBUTING.md](./CONTRIBUTING.md). Cursor loads [`.cursor/rules/openharness-protocol.mdc`](./.cursor/rules/openharness-protocol.mdc) for AI-assisted work in this repo.
+
 ---
 
 ## Vision
@@ -185,6 +187,8 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 | **JSON Schema（草案）** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
 除文件头另有说明外，本仓库中的规范文本与 Schema 与根目录 [LICENSE](./LICENSE)（MIT）一致。
+
+**贡献：** 见 [CONTRIBUTING.md](./CONTRIBUTING.md)。在本仓库内使用 Cursor 时，会加载 [`.cursor/rules/openharness-protocol.mdc`](./.cursor/rules/openharness-protocol.mdc)，便于 AI 辅助实现与协议一致。
 
 ## 愿景
 
