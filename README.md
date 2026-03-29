@@ -65,14 +65,14 @@ graph LR
 ```
 
 - **Device-agnostic input:** Structured JSON context instead of ad-hoc prompt stitching.
-- **Black-box orchestration:** State machines, tool calls, sandboxing, and routing live behind the Engine.
+- **Engine-side orchestration:** SOP/state machines, tool calls, sandboxing, and routing run in the Harness Engine so Shells stay thin and protocol-focused.
 - **Actionable output:** Responses are **action directives** (e.g. UI render, computer-use steps), not only plain text.
 
 ---
 
 ## Protocol snapshot (informative)
 
-The normative document is **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**. Below is a minimal example; versioning, capabilities, privacy tiers, and errors are defined there.
+The normative document is **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**. Below is an illustrative snapshot (`correlation_id`, `shell`, `task_hint`, `continuation`, `attachments`, bidirectional capabilities, `deadline_ms`); full semantics are in the spec.
 
 **Request (Shell → Engine)**
 
@@ -80,7 +80,11 @@ The normative document is **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**. Below is a
 {
   "protocol_version": "1.0.0",
   "request_id": "req_01jqxyz",
-  "capabilities": { "openharness.actions.parallel": true },
+  "correlation_id": "corr_8f3a",
+  "capabilities": {
+    "openharness.actions.parallel": true,
+    "openharness.ui.rich_cards": true
+  },
   "request": {
     "auth": {
       "tenant_id": "usr_9527",
@@ -88,7 +92,17 @@ The normative document is **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**. Below is a
     },
     "context": {
       "session_id": "sess_8848",
-      "user_intent": "Analyze the current screen and extract key metrics.",
+      "conversation_id": "conv_tab_2",
+      "user_intent": "Continue the onboarding SOP.",
+      "task_hint": { "sop_id": "sop_onboard", "business_key": "deal_42" },
+      "continuation": { "run_id": "run_7d2", "continuation_token": "ctok_aq9" },
+      "shell": {
+        "shell_kind": "feishu_bot",
+        "shell_version": "2.1.0",
+        "locale": "zh-CN",
+        "timezone": "Asia/Shanghai"
+      },
+      "attachments": [{ "ref_id": "att_01", "mime_type": "image/png" }],
       "environment_state": {
         "privacy_tier": "restricted",
         "os": "macOS",
@@ -106,7 +120,13 @@ The normative document is **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**. Below is a
 {
   "protocol_version": "1.0.0",
   "request_id": "req_01jqxyz",
+  "correlation_id": "corr_8f3a",
   "supported_protocol_versions": ["1.0.0"],
+  "supported_capabilities": {
+    "openharness.actions.parallel": true,
+    "openharness.ui.rich_cards": true
+  },
+  "capability_denials": [],
   "response": {
     "status": "success",
     "engine_latency_ms": 120,
@@ -115,6 +135,7 @@ The normative document is **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**. Below is a
         "action_type": "render_ui",
         "priority": "high",
         "risk_tier": "safe",
+        "deadline_ms": 5000,
         "payload": { "component": "DataChart", "data": [] }
       },
       {
@@ -166,14 +187,14 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 ## 架构要点
 
 - **无感输入：** 用标准化 JSON 上下文传递意图，而不是随意拼接 Prompt。
-- **黑盒编排：** 状态机、工具调用、沙箱与路由放在 Engine 一侧。
+- **引擎侧编排：** 状态机、工具调用、沙箱与路由由 Harness Engine 承担，Shell 保持轻量、专注协议与呈现。
 - **可执行输出：** 返回 **行动指令**（如 UI 渲染、Computer Use），而不仅是纯文本。
 
 上图（Mermaid）与英文部分相同：**Shell ↔ 标准化 JSON ↔ Harness Engine**。
 
 ## 协议示例（参考）
 
-最小请求/响应 JSON 见上文 **Protocol snapshot（informative）** 英文小节。字段语义、版本与兼容、隐私与错误等以 **[docs/PROTOCOL.zh.md](./docs/PROTOCOL.zh.md)**（对照 **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**）为准。
+完整请求/响应示例见上文 **Protocol snapshot（informative）**（含 `correlation_id`、`shell`、`task_hint`、`continuation`、`attachments`、双向能力与 `deadline_ms` 等）。细则与未知 `action_type` 行为以 **[docs/PROTOCOL.zh.md](./docs/PROTOCOL.zh.md)**（对照 **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**）为准。
 
 ## 企业实现
 
