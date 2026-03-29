@@ -5,6 +5,8 @@
 
 This document defines the **normative** JSON message contract between a **Shell** (UI, device, or client) and a **Harness Engine** (orchestration, models, tools). Transport (HTTP, WebSocket, gRPC, etc.) is out of scope for v1 except where noted as recommendations.
 
+For **repository scope** — what is normative here versus what belongs to Shell/Engine products (e.g. DeskHarness, **fastClaw**, any other Engine) — see **[SCOPE.md](./SCOPE.md)** (informative).
+
 DeskHarness / Fangcun and other integrators MAY publish **wishlists** or **implementation mappings**; those documents do **not** override this specification.
 
 ---
