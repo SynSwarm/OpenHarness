@@ -24,7 +24,7 @@
 | **Scope & boundaries (informative)** | [docs/SCOPE.md](./docs/SCOPE.md) |
 | **Architecture overview (informative)** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
 | **AI / third-party integration guide** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
-| **Large Shell / CLI guides (meta, informative)** | [docs/guides/large-shell-integrations.md](./docs/guides/large-shell-integrations.md) |
+| **Shell-at-scale integration guide (meta, informative)** | [docs/guides/shell-at-scale.md](./docs/guides/shell-at-scale.md) |
 | **IM/bot Shell profile (informative)** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **HTTP transport hints (informative)** | [docs/profiles/http-transport.md](./docs/profiles/http-transport.md) |
 | **Example messages (golden JSON)** | [examples/README.md](./examples/README.md) |
@@ -186,7 +186,7 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 | **范围与边界（资料性）** | [docs/SCOPE.md](./docs/SCOPE.md) |
 | **架构总览（资料性）** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
 | **AI / 第三方集成指引** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
-| **大型 Shell / CLI 指引（元文档，资料性）** | [docs/guides/large-shell-integrations.md](./docs/guides/large-shell-integrations.md) |
+| **规模化 Shell 集成指引（元文档，资料性）** | [docs/guides/shell-at-scale.md](./docs/guides/shell-at-scale.md) |
 | **IM/机器人 Shell Profile（资料性）** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **HTTP 传输提示（资料性）** | [docs/profiles/http-transport.md](./docs/profiles/http-transport.md) |
 | **示例消息（金样 JSON）** | [examples/README.md](./examples/README.md) |

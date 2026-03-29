@@ -16,7 +16,7 @@
 | 2 | **[schema/openharness-v1.draft.json](../../schema/openharness-v1.draft.json)** | Validatable shape for request vs response messages |
 | 3 | **[examples/README.md](../../examples/README.md)** | Golden JSON + validation notes |
 | 4 | **[SCOPE.md](../SCOPE.md)** | What belongs in the protocol repo vs your product adapter |
-| 5 | **[large-shell-integrations.md](./large-shell-integrations.md)** | Where to put guides vs profiles for **large** Shell/CLI teams; keeps PROTOCOL vendor-neutral |
+| 5 | **[shell-at-scale.md](./shell-at-scale.md)** | Where to put guides vs profiles for Shells **at scale** (CLI, bots, multi-tenant); keeps PROTOCOL vendor-neutral |
 | 6 | **[profiles/im-bot-shell.md](../profiles/im-bot-shell.md)** | Vendor-neutral: who maps platform IDs into `context`, who documents transport to the Engine, attachment pipelines, Engine truth tables |
 
 Skipping (2) and fixtures often causes **valid-looking** but **non-interoperable** clients.
@@ -145,7 +145,7 @@ OpenHarness 维护者、第三方 **Harness**、**Shell/CLI/机器人适配器**
 
 ### 核心建议
 
-1. **阅读顺序**：先 PROTOCOL → 再 Schema → 再 **`examples/`** → **[large-shell-integrations.md](./large-shell-integrations.md)**（大型 Shell/CLI 资料放哪）→ **`im-bot-shell` profile**。  
+1. **阅读顺序**：先 PROTOCOL → 再 Schema → 再 **`examples/`** → **[shell-at-scale.md](./shell-at-scale.md)**（规模化 Shell 资料放哪）→ **`im-bot-shell` profile**。  
 2. **金样 JSON**：契约测试与 **AI 上下文**；含 **成功 / 错误 / capability_denials** 等（见 **`examples/README.md`**）。**CI** 已用 Schema 校验全部金样。  
 3. **清单**：第四节、第五节可作任务列表。  
 4. **反模式表**：第六节。  

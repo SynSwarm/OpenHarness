@@ -1,4 +1,4 @@
-# Large Shell / CLI integrations — where guides live (Informative)
+# Shell integrations at scale — where guides live (Informative)
 
 **Status:** Informative meta-guide. **Does not** change **[PROTOCOL.md](../PROTOCOL.md)**. For scope boundaries, see **[SCOPE.md](../SCOPE.md)**.
 
@@ -46,9 +46,9 @@ This is **documentation ergonomics**, not a new protocol tier.
 
 ---
 
-## Relationship to “big Shell” readability
+## Relationship to readability at scale
 
-- **Yes**, it is **useful** to give large Shell teams a **clear reading path**: PROTOCOL → profiles → guides → examples → (optional) your product’s mapping doc.
+- **Yes**, it is **useful** to give teams operating **Shells at scale** (CLI, bots, multi-tenant surfaces) a **clear reading path**: PROTOCOL → profiles → guides → examples → (optional) your product’s mapping doc.
 - **No**, the core repo does **not** need to host every vendor’s field-level appendix — **im-bot-shell** + **AI_INTEGRATION** already establish the split; vendor detail can stay **outside** or in **optional** contributed appendices.
 
 ---
@@ -83,8 +83,8 @@ CLI/机器人**规模大**、会话与附件易错、希望有「如何填 `cont
 | **某厂商** 字段级映射表            | **优先** 产品仓；或 **可选** 的 `**profiles/`** 附录 PR，标明 **非规范** | 避免本仓变成某开放平台手册的全量镜像。 |
 
 
-### 与「大 Shell 方可读性」
+### 与「规模化 Shell 集成」的可读性
 
-- **有必要** 为大型 Shell 团队提供**清晰阅读路径**：PROTOCOL → profiles → guides → examples →（可选）产品侧映射文档。  
+- **有必要** 为**高覆盖面 / 规模化** Shell 团队（CLI、机器人、多租户等）提供**清晰阅读路径**：PROTOCOL → profiles → guides → examples →（可选）产品侧映射文档。  
 - **不必** 在核心仓库收齐**所有厂商**的附录；**im-bot-shell + AI_INTEGRATION** 已划清分工；厂商细节可**外置**或以**可选附录**贡献。
 
