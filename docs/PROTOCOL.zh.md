@@ -3,7 +3,7 @@
 **版本：** v1.0.0-draft  
 **说明：** 中文译文供阅读便利；与英文不一致时，以 **[PROTOCOL.md](./PROTOCOL.md)** 为准。
 
-**仓库范围**（规范性正文与各 Engine 产品分工）见 **[SCOPE.md](./SCOPE.md)**（资料性）。
+**仓库范围**（规范性正文与各 Engine 产品分工）见 **[SCOPE.md](./SCOPE.md)**（资料性）。**分层叙事**（核心 / Profile / 传输与执行反馈）见 **[OVERVIEW.md](./OVERVIEW.md)**（资料性）。
 
 DeskHarness / 方寸等集成方可以发布 **Wishlist** 或 **实现映射**；此类文档**不替代**本规范。
 

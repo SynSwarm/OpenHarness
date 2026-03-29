@@ -2,7 +2,7 @@
 
 **Language:** English first. [中文](#中文) below.
 
-This document clarifies **what OpenHarness is**, **what belongs in this repository**, and **what stays with Shell or Engine products** (e.g. DeskHarness, Fangcun, **fastClaw**, or any other Harness Engine). It is **informative**; the **normative** wire format remains **[PROTOCOL.md](./PROTOCOL.md)**.
+This document clarifies **what OpenHarness is**, **what belongs in this repository**, and **what stays with Shell or Engine products** (e.g. DeskHarness, Fangcun, **fastClaw**, or any other Harness Engine). It is **informative**; the **normative** wire format remains **[PROTOCOL.md](./PROTOCOL.md)**. For a **three-layer narrative** (core vs profiles vs transport/feedback), see **[OVERVIEW.md](./OVERVIEW.md)**.
 
 ---
 
@@ -63,7 +63,7 @@ The **OpenHarness repository’s responsibility table does not change** when the
 
 ## 中文
 
-本文说明 **OpenHarness 是什么**、**本仓库负责什么**、**哪些工作属于 Shell 或各 Harness Engine 产品**（例如 DeskHarness、方寸、**fastClaw** 等轻量网关）。本文为 **资料性**；**规范性**线格式仍以 **[PROTOCOL.md](./PROTOCOL.md)** 为准。
+本文说明 **OpenHarness 是什么**、**本仓库负责什么**、**哪些工作属于 Shell 或各 Harness Engine 产品**（例如 DeskHarness、方寸、**fastClaw** 等轻量网关）。本文为 **资料性**；**规范性**线格式仍以 **[PROTOCOL.md](./PROTOCOL.md)** 为准。**三层叙事**（核心 / Profile / 传输与反馈）见 **[OVERVIEW.md](./OVERVIEW.md)**。
 
 ### OpenHarness 是什么
 

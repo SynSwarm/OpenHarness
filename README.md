@@ -22,6 +22,7 @@
 | **Protocol (English, normative)** | [docs/PROTOCOL.md](./docs/PROTOCOL.md) |
 | **协议（中文，对照译文）** | [docs/PROTOCOL.zh.md](./docs/PROTOCOL.zh.md) |
 | **Scope & boundaries (informative)** | [docs/SCOPE.md](./docs/SCOPE.md) |
+| **Architecture overview (informative)** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
 | **JSON Schema (draft)** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
 Unless a file header says otherwise, spec text and schemas in this repository are licensed under the [MIT License](./LICENSE).
@@ -176,6 +177,7 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 | **英文规范（权威）** | [docs/PROTOCOL.md](./docs/PROTOCOL.md) |
 | **中文对照** | [docs/PROTOCOL.zh.md](./docs/PROTOCOL.zh.md) |
 | **范围与边界（资料性）** | [docs/SCOPE.md](./docs/SCOPE.md) |
+| **架构总览（资料性）** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
 | **JSON Schema（草案）** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
 除文件头另有说明外，本仓库中的规范文本与 Schema 与根目录 [LICENSE](./LICENSE)（MIT）一致。
