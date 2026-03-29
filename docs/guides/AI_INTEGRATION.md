@@ -103,6 +103,7 @@ Validate outgoing/incoming JSON against the Schema (request message vs response 
 Follow PROTOCOL §11 for unknown action_type: never execute side effects for unknown types.
 Do not put base64 blobs or long-lived API secrets in the JSON body; use attachment refs and credential_ref / transport auth.
 Use examples/minimal/ and examples/im-cli/ as golden references.
+Read docs/guides/shell-at-scale.md for where guides vs profiles go (CLI, bots, multi-tenant).
 Read docs/profiles/im-bot-shell.md for Shell vs Engine responsibilities on IM/bot integrations.
 ```
 

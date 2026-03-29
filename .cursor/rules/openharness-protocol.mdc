@@ -16,6 +16,7 @@ This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). 
 ## Implementing adapters or examples (humans + AI)
 
 - Read **`docs/guides/AI_INTEGRATION.md`** — checklists, anti-patterns, and a copy-paste prompt block.
+- For **Shells at scale** (CLI, bots, multi-tenant surfaces): where informative docs belong vs **PROTOCOL**, see **`docs/guides/shell-at-scale.md`**.
 - Use **`examples/minimal/`** and **`examples/im-cli/`** as golden JSON references; do not invent fields that contradict PROTOCOL.
 - For IM/bot Shell responsibilities (mapping platform IDs into `context`, etc.), see **`docs/profiles/im-bot-shell.md`**.
 - **§11 unknown `action_type`:** never execute side effects for unknown directive types.
