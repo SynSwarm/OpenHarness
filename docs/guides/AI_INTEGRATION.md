@@ -117,10 +117,13 @@ Adjust paths if your monorepo nests OpenHarness as a submodule.
 - **Fixtures:** `examples/minimal/response-error.json`, `response-protocol-unsupported.json`, `im-cli/response-capability-denials.json` cover common **error** and **negotiation** paths (not only success).
 - **HTTP hints (informative):** **[profiles/http-transport.md](../profiles/http-transport.md)** — optional correlation/header mapping; wire JSON remains transport-agnostic.
 
-**Still optional / TBD**
+**Enhancements (TBD — contributions welcome)**
+
+These items **do not** block a correct **wire** implementation or conformance to **PROTOCOL + Schema**; they improve ergonomics and interop documentation.
 
 - **OpenAPI** for a chosen HTTP mapping (per Engine deployment) — convenience for codegen, not required by the core protocol.
 - **Streaming profile** for `openharness.streaming` — see PROTOCOL §15; product-specific until a shared profile lands.
+- **More golden fixtures** under `examples/` — additional scenarios welcome; CI validates every `examples/**/*.json` against the Schema.
 - **Central registry** of every `action_type` worldwide — not required; interoperability relies on **Engine truth tables** + **namespaced** types (PROTOCOL §12).
 
 ---
@@ -129,7 +132,7 @@ Adjust paths if your monorepo nests OpenHarness as a submodule.
 
 **性质：** 资料性；**权威规范** 仍为 **[PROTOCOL.md](../PROTOCOL.md)**。边界见 **[SCOPE.md](../SCOPE.md)**，分层见 **[OVERVIEW.md](../OVERVIEW.md)**。
 
-**生态路线图（与 §8 对应）：** 仓库已含 **CI Schema 校验**（`.github/workflows/validate-examples.yml`）、**错误/协商类金样**、**HTTP 传输提示**（[http-transport.md](../profiles/http-transport.md)）。OpenAPI、流式 profile、更多示例仍为可选贡献项。
+**生态路线图（与 §8 对应）：** 仓库已含 **CI Schema 校验**、**错误/协商类金样**、**HTTP 传输提示**（[http-transport.md](../profiles/http-transport.md)）。**OpenAPI、流式 profile、更多金样** 等标为 **增强项（TBD，欢迎 PR）**，**不**构成协议或 wire 正确性的前置条件。
 
 ### 面向谁
 
@@ -149,4 +152,4 @@ OpenHarness 维护者、第三方 **Harness**、**Shell/CLI/机器人适配器**
 
 ### 我们（OpenHarness 维护者）还能补什么
 
-- 见上文 **§8 生态路线图**：OpenAPI、流式 profile、更多金样等（欢迎 PR）；**HTTP 提示** 已有 **[http-transport.md](../profiles/http-transport.md)**。
+- 见 **§8**：**增强项**（OpenAPI、流式 profile、更多金样等）为 **TBD / 欢迎 PR**；**HTTP 提示** 已有 **[http-transport.md](../profiles/http-transport.md)**。
