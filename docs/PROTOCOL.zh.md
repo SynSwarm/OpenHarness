@@ -5,7 +5,7 @@
 
 **仓库范围**（规范性正文与各 Engine 产品分工）见 **[SCOPE.md](./SCOPE.md)**（资料性）。**分层叙事**（核心 / Profile / 传输与执行反馈）见 **[OVERVIEW.md](./OVERVIEW.md)**（资料性）。
 
-DeskHarness / 方寸等集成方可以发布 **Wishlist** 或 **实现映射**；此类文档**不替代**本规范。
+集成方可以发布 **Wishlist** 或 **实现映射**；此类文档**不替代**本规范。
 
 ---
 
@@ -108,7 +108,7 @@ Shell → Engine 的 **`capabilities`** 与 Engine → Shell 的 **`supported_ca
 
 | 字段 | 必填 | 说明 |
 |------|------|------|
-| `shell_kind` | 建议 | Shell 族稳定标识；可用约定字符串（如 `feishu_bot`、`command_shell`、`tv`、`vehicle_hmi`）或命名空间字符串。 |
+| `shell_kind` | 建议 | Shell 族稳定标识；可用约定字符串（如 `im_bot`、`command_shell`、`tv`、`vehicle_hmi`）或命名空间字符串。 |
 | `shell_version` | 否 | Shell 软件版本。 |
 | `locale` | 否 | BCP 47 语言标签（如 `zh-CN`）。 |
 | `timezone` | 否 | IANA 时区（如 `Asia/Shanghai`）。 |
@@ -154,7 +154,7 @@ Shell → Engine 的 **`capabilities`** 与 Engine → Shell 的 **`supported_ca
 
 ### 9.2 续跑（SOP / run）
 
-`continuation` 可选，用于 **同一 SOP run** 的续跑（如飞书「继续」）：
+`continuation` 可选，用于 **同一 SOP run** 的续跑（如 IM 客户端中「继续」）：
 
 | 字段 | 必填 | 说明 |
 |------|------|------|
@@ -198,7 +198,7 @@ Shell 维护其实现的 **`action_type`** 集合。若某条指令的 `action_t
 ## 12. 行动类型注册表
 
 - **核心** 类型示例：`render_ui`、`simulate_action`、`render_message`、`request_approval`、`noop`。
-- **命名空间** 类型建议反向域名或点分前缀，如 `fangcun.sop.start`、`fangcun.plugin.invoke`。
+- **命名空间** 类型建议反向域名或点分前缀，如 `com.example.sop.start`、`com.example.plugin.invoke`。
 - 可在注册条目中说明 **semver**；除非另行标准化，否则不必把 semver 写进线格式字符串本身。
 
 ---
@@ -267,7 +267,7 @@ v1 规范性正文为 **非流式** 请求/响应。SSE/WebSocket 分块、`stre
         "continuation_token": "ctok_aq9"
       },
       "shell": {
-        "shell_kind": "feishu_bot",
+        "shell_kind": "im_bot",
         "shell_version": "2.1.0",
         "locale": "zh-CN",
         "timezone": "Asia/Shanghai"

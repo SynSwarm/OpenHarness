@@ -24,6 +24,7 @@
 | **Scope & boundaries (informative)** | [docs/SCOPE.md](./docs/SCOPE.md) |
 | **Architecture overview (informative)** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
 | **AI / third-party integration guide** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
+| **IM/bot Shell profile (informative)** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **Example messages (golden JSON)** | [examples/README.md](./examples/README.md) |
 | **JSON Schema (draft)** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
@@ -103,7 +104,7 @@ The normative document is **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**. Below is a
       "task_hint": { "sop_id": "sop_onboard", "business_key": "deal_42" },
       "continuation": { "run_id": "run_7d2", "continuation_token": "ctok_aq9" },
       "shell": {
-        "shell_kind": "feishu_bot",
+        "shell_kind": "im_bot_cli",
         "shell_version": "2.1.0",
         "locale": "zh-CN",
         "timezone": "Asia/Shanghai"
@@ -160,7 +161,7 @@ The normative document is **[docs/PROTOCOL.md](./docs/PROTOCOL.md)**. Below is a
 
 ## Enterprise implementations
 
-The OpenHarness **protocol** stays open and free. Production deployments often need hardened sandboxes, compliance, visual SOP authoring, and HA — those are product concerns. For a maintained enterprise gateway built around the same ideas, see **DeskHarness Enterprise Gateway** (*Write once with OpenHarness, scale everywhere with DeskHarness*).
+The OpenHarness **protocol** stays open and free. Production deployments often need hardened sandboxes, compliance, visual SOP authoring, and HA — those are product concerns. Vendors may ship **enterprise gateways** that implement the same wire contract with added SLAs and operations tooling.
 
 <p align="right"><a href="#readme-zh">中文 →</a></p>
 
@@ -183,6 +184,7 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 | **范围与边界（资料性）** | [docs/SCOPE.md](./docs/SCOPE.md) |
 | **架构总览（资料性）** | [docs/OVERVIEW.md](./docs/OVERVIEW.md) |
 | **AI / 第三方集成指引** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
+| **IM/机器人 Shell Profile（资料性）** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **示例消息（金样 JSON）** | [examples/README.md](./examples/README.md) |
 | **JSON Schema（草案）** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
@@ -210,7 +212,7 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 
 ## 企业实现
 
-**OpenHarness 协议本身**保持开源与免费。落地到高并发、强合规、复杂遗留系统时，往往需要更强产品与运维能力。若需要企业级网关与配套能力，可参考核心团队维护的 **DeskHarness Enterprise Gateway**（*Write once with OpenHarness, scale everywhere with DeskHarness*）。
+**OpenHarness 协议本身**保持开源与免费。落地到高并发、强合规、复杂遗留系统时，往往需要更强产品与运维能力；各厂商可提供 **企业级网关** 与配套能力（在同一套线格式之上叠加 SLA 与运维工具）。
 
 <p align="center">
   <a href="#readme-en"><strong>English</strong></a>

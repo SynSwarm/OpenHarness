@@ -5,7 +5,7 @@ alwaysApply: true
 
 # OpenHarness repository context
 
-This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). It is **not** a specific Engine product (e.g. DeskHarness, fastClaw).
+This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). It is **not** a vendor-specific Engine product binary.
 
 ## Sources of truth
 
@@ -16,7 +16,8 @@ This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). 
 ## Implementing adapters or examples (humans + AI)
 
 - Read **`docs/guides/AI_INTEGRATION.md`** — checklists, anti-patterns, and a copy-paste prompt block.
-- Use **`examples/minimal/`** and **`examples/feishu-cli/`** as golden JSON references; do not invent fields that contradict PROTOCOL.
+- Use **`examples/minimal/`** and **`examples/im-cli/`** as golden JSON references; do not invent fields that contradict PROTOCOL.
+- For IM/bot Shell responsibilities (mapping platform IDs into `context`, etc.), see **`docs/profiles/im-bot-shell.md`**.
 - **§11 unknown `action_type`:** never execute side effects for unknown directive types.
 - **Attachments:** references only in the body — no large base64 payloads (`PROTOCOL` §9.1).
 - **Capabilities:** handle `capability_denials` / `supported_capabilities`; avoid silent half-features.

@@ -8,8 +8,10 @@ These JSON files are **golden references** for implementers and **AI coding assi
 |------|---------|
 | `minimal/request.json` | Smallest valid **Shell → Engine** message (`requestMessage`). |
 | `minimal/response.json` | Smallest valid **Engine → Shell** success (`responseMessage`). |
-| `feishu-cli/request.json` | Illustrative CLI/IM-style request: `shell`, `task_hint`, `continuation`, attachment **ref**. |
-| `feishu-cli/response-success.json` | Matching success response with `supported_capabilities` / empty `capability_denials`. |
+| `im-cli/request.json` | Illustrative **IM / bot-platform CLI** request: `shell`, `task_hint`, `continuation`, attachment **ref**. |
+| `im-cli/response-success.json` | Matching success response with `supported_capabilities` / empty `capability_denials`. |
+
+See **[../docs/profiles/im-bot-shell.md](../docs/profiles/im-bot-shell.md)** for responsibility split (Shell vs Engine) on this class of integrations.
 
 ## Validation
 
@@ -32,4 +34,4 @@ Contributions welcome: add CI that validates all `examples/**/*.json`.
 
 ---
 
-中文：本目录为 **金样 JSON**，供实现与 AI 对齐；**规范性** 仍以 **PROTOCOL** 与 **Schema** 为准。请求与响应应 **分别** 校验（Schema 顶层为 `oneOf`）。
+中文：本目录为 **金样 JSON**，供实现与 AI 对齐；**规范性** 仍以 **PROTOCOL** 与 **Schema** 为准。请求与响应应 **分别** 校验（Schema 顶层为 `oneOf`）。IM/机器人 Shell 职责划分见 **[../docs/profiles/im-bot-shell.md](../docs/profiles/im-bot-shell.md)**。

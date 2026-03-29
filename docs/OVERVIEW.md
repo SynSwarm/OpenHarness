@@ -8,7 +8,7 @@
 
 ## Why this document
 
-Building OpenHarness is, in essence, maintaining a **cross-platform agent communication contract**: **what** JSON means, not **how** any particular Engine (DeskHarness, fastClaw, etc.) executes it. This page groups that work into **three layers** so we do not overfit one product (e.g. desktop automation) into the **only** core protocol.
+Building OpenHarness is, in essence, maintaining a **cross-platform agent communication contract**: **what** JSON means, not **how** any particular Engine implementation executes it. This page groups that work into **three layers** so we do not overfit one product (e.g. desktop automation) into the **only** core protocol.
 
 ---
 
@@ -33,7 +33,7 @@ The protocol defines **structured** context, not one fixed sensor format.
 - **`attachments`** — **references** (`ref_id`, `uri`, `asset_id`); **no** large base64 blobs in the message body (see PROTOCOL §9.1).
 - **`task_hint`**, **`continuation`**, **`session_id`**, **`conversation_id`** — routing and resume without stuffing everything into a raw prompt.
 
-So we standardize **what classes of data** may appear and **how they are labeled**, not “everyone must send a full-screen Base64 screenshot.” Different Shells (Feishu, desktop agent, TV) choose what they can legally send.
+So we standardize **what classes of data** may appear and **how they are labeled**, not “everyone must send a full-screen Base64 screenshot.” Different Shells (IM bot, desktop agent, TV) choose what they can legally send.
 
 ---
 
@@ -79,7 +79,7 @@ Document roadmap items in **profiles** or a **separate execution-feedback note**
 2. **[SCOPE.md](./SCOPE.md)** — what belongs in this repository vs Engine products.  
 3. **This OVERVIEW** — narrative and layering; use for onboarding and whitepaper-style explanations.  
 4. **[guides/AI_INTEGRATION.md](./guides/AI_INTEGRATION.md)** — third-party Harness / Shell / **AI-assisted** implementation checklist and golden examples.  
-5. **Profiles** (as they appear) — optional, scenario-specific recommendations.
+5. **[profiles/im-bot-shell.md](./profiles/im-bot-shell.md)** — IM/bot-platform Shell responsibilities (vendor-neutral). Other profiles may follow under `docs/profiles/`.
 
 ---
 
@@ -119,4 +119,4 @@ v1 **正文** 以 **请求—响应** 为主；「执行完再推一帧标准事
 2. **SCOPE.md**（边界）  
 3. **本文**（叙事与分层）  
 4. **guides/AI_INTEGRATION.md**（第三方 / AI 辅助集成与金样）  
-5. **各 Profile**（随仓库增补）
+5. **profiles/im-bot-shell.md**（IM/机器人 Shell 职责划分，无厂商名）；其余 Profile 随仓库增补

@@ -5,9 +5,9 @@
 
 This document defines the **normative** JSON message contract between a **Shell** (UI, device, or client) and a **Harness Engine** (orchestration, models, tools). Transport (HTTP, WebSocket, gRPC, etc.) is out of scope for v1 except where noted as recommendations.
 
-For **repository scope** — what is normative here versus what belongs to Shell/Engine products (e.g. DeskHarness, **fastClaw**, any other Engine) — see **[SCOPE.md](./SCOPE.md)** (informative). For a **layered narrative** (core wire format vs optional profiles vs transport/execution feedback), see **[OVERVIEW.md](./OVERVIEW.md)** (informative).
+For **repository scope** — what is normative here versus what belongs to Shell/Engine product integrations — see **[SCOPE.md](./SCOPE.md)** (informative). For a **layered narrative** (core wire format vs optional profiles vs transport/execution feedback), see **[OVERVIEW.md](./OVERVIEW.md)** (informative).
 
-DeskHarness / Fangcun and other integrators MAY publish **wishlists** or **implementation mappings**; those documents do **not** override this specification.
+Integrators MAY publish **wishlists** or **implementation mappings**; those documents do **not** override this specification.
 
 ---
 
@@ -126,7 +126,7 @@ Optional object describing the Shell implementation so the Engine can tailor res
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| `shell_kind` | recommended | Stable identifier for the Shell family. MAY use well-known strings (`feishu_bot`, `lark_cli`, `command_shell`, `tv`, `vehicle_hmi`, …) or **namespaced** strings (`com.example.kiosk`). |
+| `shell_kind` | recommended | Stable identifier for the Shell family. MAY use well-known strings (`im_bot`, `command_shell`, `tv`, `vehicle_hmi`, …) or **namespaced** strings (`com.example.kiosk`). |
 | `shell_version` | optional | Shell software version string. |
 | `locale` | optional | BCP 47 language tag (e.g. `zh-CN`, `en-US`). |
 | `timezone` | optional | IANA time zone name (e.g. `Asia/Shanghai`). |
@@ -179,7 +179,7 @@ Each item SHOULD include at least one of: opaque **`ref_id`** (previously upload
 
 ### 9.2 Continuation (SOP / run resume)
 
-`continuation` is an optional object for **idempotent resume** of a workflow (e.g. “Continue” in Feishu):
+`continuation` is an optional object for **idempotent resume** of a workflow (e.g. “Continue” in a chat or IM client):
 
 | Field | Required | Description |
 |-------|----------|-------------|
@@ -225,7 +225,7 @@ Deployments that intentionally execute unknown types MUST NOT do so by default; 
 ## 12. Action type registry
 
 - **Core** types (examples, not exhaustive): `render_ui`, `simulate_action`, `render_message`, `request_approval`, `noop`.
-- **Namespaced** types SHOULD use reverse-DNS or dotted prefixes with **stable semantics**, e.g. `fangcun.sop.start`, `fangcun.plugin.invoke`, `com.deskharness.render.dashboard`. Where semver is embedded, document it in the registry entry, not in the wire string unless explicitly standardized.
+- **Namespaced** types SHOULD use reverse-DNS or dotted prefixes with **stable semantics**, e.g. `com.example.sop.start`, `com.example.plugin.invoke`, `com.example.render.dashboard`. Where semver is embedded, document it in the registry entry, not in the wire string unless explicitly standardized.
 - Implementations MAY publish an optional public registry; the protocol does not require a central authority for v1.
 
 ---
@@ -294,7 +294,7 @@ Normative JSON Schema (draft): [`../schema/openharness-v1.draft.json`](../schema
         "continuation_token": "ctok_aq9"
       },
       "shell": {
-        "shell_kind": "feishu_bot",
+        "shell_kind": "im_bot",
         "shell_version": "2.1.0",
         "locale": "zh-CN",
         "timezone": "Asia/Shanghai"

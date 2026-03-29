@@ -1,7 +1,7 @@
 {
   "protocol_version": "1.0.0",
-  "request_id": "req_feishu_cli_001",
-  "correlation_id": "corr_feishu_001",
+  "request_id": "req_im_cli_001",
+  "correlation_id": "corr_im_001",
   "capabilities": {
     "openharness.ui.rich_cards": true,
     "openharness.attachments.upload": true
@@ -24,7 +24,7 @@
         "continuation_token": "ctok_aq9"
       },
       "shell": {
-        "shell_kind": "feishu_cli",
+        "shell_kind": "im_bot_cli",
         "shell_version": "0.4.0",
         "locale": "zh-CN",
         "timezone": "Asia/Shanghai"
@@ -38,7 +38,7 @@
       ],
       "environment_state": {
         "privacy_tier": "restricted",
-        "active_window": "Feishu"
+        "active_window": "ChatClient"
       }
     }
   }
