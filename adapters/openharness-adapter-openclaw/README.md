@@ -6,6 +6,20 @@
 
 ---
 
+## Start here (OpenClaw, AI coding agents, humans)
+
+Read **[implementer-orientation.md](../../docs/guides/implementer-orientation.md)** before asking “what’s missing?” — it pre-answers scope questions.
+
+| Question | Answer in one line |
+|----------|-------------------|
+| Is this folder the **TV Shell app**? | **No.** This is **server-side** Python beside OpenClaw (`bridge-server`, pairing **examples**, CLI). The **TV client** is a **separate** codebase → **[openharness-adapter-android-tv](../openharness-adapter-android-tv/README.md)**. |
+| Must I build a **full Harness Engine** (SOP, huge orchestration)? | **No** for v1 dialogue. **`bridge-server` + OpenClaw HTTP** is enough to return **`render_message`**. |
+| Which **TV** (Xiaomi, TCL, Apple TV, …)? | **Your product choice.** The spec cares only that the Shell sends **valid OpenHarness JSON**; Android TV is a common target. |
+| **Python on TV** vs **Kotlin**? | This adapter is **Python** on the **server**. TV is often **Kotlin/Java**; both are fine. |
+| **LAN vs Internet**, **pairing**? | Deployment choice; see **[device-pairing-session.md](../../docs/guides/device-pairing-session.md)** and optional **`pair-server`** here. |
+
+---
+
 ## Where this runs (important)
 
 This adapter is **not** a service operated by the OpenHarness project. It is meant to be **installed by each operator** on **their own machine** next to their **OpenClaw** (or compatible) server — same host, same container network, or a nearby VM — so **your users’ infrastructure**, not a central “our server,” runs the bridge.
@@ -210,6 +224,8 @@ The mock Engine returns a minimal **`render_message`** directive. Your real TV a
 ---
 
 **性质：** 资料性 Shell 侧工具；线格式以 **PROTOCOL + Schema + 金样** 为准。
+
+**OpenClaw / AI 请先读：** **[implementer-orientation.md](../../docs/guides/implementer-orientation.md)** — 说明 **本目录不是电视 APK**（电视端另工程）、**v1 对话不必先做完整 Harness Engine**（**`bridge-server` + OpenClaw** 即可）、**电视品牌/系统为产品自选**。
 
 **谁来做对接：** **OpenClaw 不会替你们接 OpenHarness**；**你们自建适配层**——把 OpenClaw 侧的事件/IPC 映射成 **`request`**，把 Engine 的 **`response`** 执行回去。本目录是 **起点**（CLI 与约定），不是 OpenClaw 官方插件。
 

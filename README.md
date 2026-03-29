@@ -26,6 +26,7 @@
 | **AI / third-party integration guide** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
 | **Shell-at-scale integration guide (meta, informative)** | [docs/guides/shell-at-scale.md](./docs/guides/shell-at-scale.md) |
 | **Device pairing & long-lived sessions (informative)** | [docs/guides/device-pairing-session.md](./docs/guides/device-pairing-session.md) |
+| **Implementer orientation (Shell vs Engine, for AI/humans)** | [docs/guides/implementer-orientation.md](./docs/guides/implementer-orientation.md) |
 | **IM/bot Shell profile (informative)** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **HTTP transport hints (informative)** | [docs/profiles/http-transport.md](./docs/profiles/http-transport.md) |
 | **Lark/Feishu CLI profile (informative)** | [docs/profiles/feishu-lark-cli.md](./docs/profiles/feishu-lark-cli.md) |
@@ -79,6 +80,23 @@ graph LR
 - **Device-agnostic input:** Structured JSON context instead of ad-hoc prompt stitching.
 - **Engine-side orchestration:** SOP/state machines, tool calls, sandboxing, and routing run in the Harness Engine so Shells stay thin and protocol-focused.
 - **Actionable output:** Responses are **action directives** (e.g. UI render, computer-use steps), not only plain text.
+
+---
+
+## Connection scenarios (informative outlook)
+
+The protocol is **transport-agnostic** and does **not** mandate specific vendors. The same **Harness Engine** can back many **Shell** surfaces if each side maps **platform context → `request.context`** and honors **`response` / `action_directives`**. Below are **illustrative** directions — not a product roadmap or interoperability guarantee:
+
+| Surface | Examples | Pointers in this repo |
+|---------|----------|------------------------|
+| **Enterprise IM / bots** | Feishu / Lark, DingTalk, similar chat platforms | Map tenant/chat/user/thread IDs into `context` per **[im-bot-shell](./docs/profiles/im-bot-shell.md)**; Lark/Feishu Open Platform CLI notes in **[feishu-lark-cli](./docs/profiles/feishu-lark-cli.md)**. |
+| **Living room / TV** | Android TV, leanback, remote-driven UI | **[adapters/openharness-adapter-android-tv](./adapters/openharness-adapter-android-tv/)** (guidance). |
+| **CLI / agent hosts** | OpenClaw-style runtimes, thin bridges | **[adapters/openharness-adapter-openclaw](./adapters/openharness-adapter-openclaw/)**. |
+| **Other clients** | Phones, tablets, IoT, in-vehicle HMI | Use stable **`shell_kind`** / namespacing (PROTOCOL §6); **[shell-at-scale](./docs/guides/shell-at-scale.md)** for where to document large integrations. |
+
+Vendor APIs, OAuth, and transport URLs remain **outside** the normative wire spec; each deployment ships **adapters** and publishes **capabilities** with the Engine team.
+
+**Onboarding (humans / AI agents):** If you are unsure what to build first or whether this repo *is* the TV app, read **[implementer-orientation.md](./docs/guides/implementer-orientation.md)**.
 
 ---
 
@@ -191,6 +209,7 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 | **AI / 第三方集成指引** | [docs/guides/AI_INTEGRATION.md](./docs/guides/AI_INTEGRATION.md) |
 | **规模化 Shell 集成指引（元文档，资料性）** | [docs/guides/shell-at-scale.md](./docs/guides/shell-at-scale.md) |
 | **设备配对与长期会话（资料性建议）** | [docs/guides/device-pairing-session.md](./docs/guides/device-pairing-session.md) |
+| **实现者定向（Shell/Engine、面向 AI/人类）** | [docs/guides/implementer-orientation.md](./docs/guides/implementer-orientation.md) |
 | **IM/机器人 Shell Profile（资料性）** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **HTTP 传输提示（资料性）** | [docs/profiles/http-transport.md](./docs/profiles/http-transport.md) |
 | **飞书 / Lark CLI 对接提示（资料性）** | [docs/profiles/feishu-lark-cli.md](./docs/profiles/feishu-lark-cli.md) |
@@ -215,6 +234,21 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 - **可执行输出：** 返回 **行动指令**（如 UI 渲染、Computer Use），而不仅是纯文本。
 
 上图（Mermaid）与英文部分相同：**Shell ↔ 标准化 JSON ↔ Harness Engine**。
+
+## 连接场景展望（资料性）
+
+线格式**与传输、厂商无关**；同一套 **Harness Engine** 可对接多种 **Shell**，只要各自把 **平台上下文映射进 `request.context`** 并处理 **`response` / `action_directives`**。下表为 **方向性举例**，**不构成** 路线图或互操作性承诺：
+
+| 场景 | 举例 | 本仓库中的线索 |
+|------|------|----------------|
+| **企业 IM / 机器人** | 飞书 / Lark、钉钉、同类协作平台 | **[im-bot-shell](./docs/profiles/im-bot-shell.md)**；飞书 / Lark CLI 见 **[feishu-lark-cli](./docs/profiles/feishu-lark-cli.md)**。 |
+| **客厅 / 大屏** | Android TV、遥控器 / Leanback | **[adapters/openharness-adapter-android-tv](./adapters/openharness-adapter-android-tv/)**（指引）。 |
+| **CLI / 智能体宿主机** | OpenClaw 等运行时、薄桥接 | **[adapters/openharness-adapter-openclaw](./adapters/openharness-adapter-openclaw/)**。 |
+| **其他终端** | 手机、平板、物联网、车机 HMI | 使用稳定 **`shell_kind`** / 命名空间（PROTOCOL §6）；大规模对接见 **[shell-at-scale](./docs/guides/shell-at-scale.md)**。 |
+
+各厂商开放平台、OAuth、具体 HTTP 路径 **不属于** 规范性线格式；每种集成需自研 **适配器** 并与 Engine 约定 **能力真值表**。
+
+**接入顺序（人类 / AI）：** 若不确定先做哪一块、或误以为本仓库即电视 APK，请先读 **[implementer-orientation.md](./docs/guides/implementer-orientation.md)**。
 
 ## 协议示例（参考）
 

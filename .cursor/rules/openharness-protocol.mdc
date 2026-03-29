@@ -19,6 +19,7 @@ This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). 
 - Read **`docs/guides/AI_INTEGRATION.md`** — checklists, anti-patterns, and a copy-paste prompt block.
 - For **Shells at scale** (CLI, bots, multi-tenant surfaces): where informative docs belong vs **PROTOCOL**, see **`docs/guides/shell-at-scale.md`**.
 - For **device pairing** (e.g. TV display code + server CLI) and **long-lived sessions** (`session_id`, device tokens), see **`docs/guides/device-pairing-session.md`** (informative; does not change PROTOCOL).
+- For **Shell vs Engine scope** and “what lives in `adapters/openharness-adapter-openclaw/` vs TV APK”, see **`docs/guides/implementer-orientation.md`** (for humans and AI agents).
 - Use **`examples/minimal/`** and **`examples/im-cli/`** as golden JSON references; do not invent fields that contradict PROTOCOL.
 - For IM/bot Shell responsibilities (mapping platform IDs into `context`, etc.), see **`docs/profiles/im-bot-shell.md`**.
 - For **Lark/Feishu Open Platform CLI** ([larksuite/cli](https://github.com/larksuite/cli)) ↔ OpenHarness mapping notes, see **`docs/profiles/feishu-lark-cli.md`**.
