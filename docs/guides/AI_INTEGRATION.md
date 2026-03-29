@@ -21,6 +21,7 @@
 | 7 | **[profiles/feishu-lark-cli.md](../profiles/feishu-lark-cli.md)** | Optional: [larksuite/cli](https://github.com/larksuite/cli) (Lark/Feishu Open Platform CLI) → OpenHarness field mapping |
 | 8 | **[device-pairing-session.md](./device-pairing-session.md)** | Optional: TV/device pairing codes, long-lived device tokens, stable `session_id` — **informative**; does not change PROTOCOL |
 | 9 | **[implementer-orientation.md](./implementer-orientation.md)** | **Shell vs Engine**, what lives in `adapters/openharness-adapter-openclaw/` vs TV APK, v1 Q&A without a monolithic Engine — for **humans and AI agents** (e.g. OpenClaw) |
+| 10 | **[openclaw-operator-kit.md](./openclaw-operator-kit.md)** | **OpenClaw “skill pack” layout**: draft `openharness_server` / `tv_client` → **`bridge-server` + `pair-server`**, `.env.example`, **`pair-confirm`**, no fixed OpenClaw URL |
 
 Skipping (2) and fixtures often causes **valid-looking** but **non-interoperable** clients.
 

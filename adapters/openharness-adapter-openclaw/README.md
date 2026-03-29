@@ -19,6 +19,8 @@ Read **[implementer-orientation.md](../../docs/guides/implementer-orientation.md
 | **Pairing** (hardcoded token vs code on TV vs fingerprint)? | All **product choices**: minimal token, or **TV shows code + server confirms**, or add **opaque device fingerprint** with confirm — **[§4.3](../../docs/guides/implementer-orientation.md)**, **[device-pairing-session.md](../../docs/guides/device-pairing-session.md)**, optional **`pair-server`** here. |
 | **Python on TV** vs **Kotlin**? | This adapter is **Python** on the **server**. TV is often **Kotlin/Java**; **irrelevant** to wire validity. |
 
+**Packaging an “OpenClaw skill pack” (two-file mental model → this repo):** See **[openclaw-operator-kit.md](../../docs/guides/openclaw-operator-kit.md)** — maps `openharness_server.py` / `openharness_tv_client.py` drafts to **`bridge-server` + `pair-server`**, clarifies **reference Shell vs real TV**, **`OPENCLAW_HTTP_URL`** discovery, and **`pair-confirm`** instead of log-only pairing.
+
 ---
 
 ## Where this runs (important)
@@ -227,6 +229,8 @@ The mock Engine returns a minimal **`render_message`** directive. Your real TV a
 **性质：** 资料性 Shell 侧工具；线格式以 **PROTOCOL + Schema + 金样** 为准。
 
 **OpenClaw / AI 请先读：** **[implementer-orientation.md](../../docs/guides/implementer-orientation.md)** — 说明 **本目录不是电视 APK**（电视端另工程）、**v1 对话不必先做完整 Harness Engine**（**`bridge-server` + OpenClaw** 即可）、**电视品牌/系统为产品自选**。
+
+**「技能包 / 两文件方案」对齐：** **[openclaw-operator-kit.md](../../docs/guides/openclaw-operator-kit.md)** — 把草稿里的 **`openharness_server` / `tv_client`** 对应到 **`pair-server` + `bridge-server`**；电视端 Python 仅作 **参考 Shell**；**`OPENCLAW_HTTP_URL`** 按版本自配；配对用 **`pair-confirm`**，不要只靠看日志。
 
 **谁来做对接：** **OpenClaw 不会替你们接 OpenHarness**；**你们自建适配层**——把 OpenClaw 侧的事件/IPC 映射成 **`request`**，把 Engine 的 **`response`** 执行回去。本目录是 **起点**（CLI 与约定），不是 OpenClaw 官方插件。
 
