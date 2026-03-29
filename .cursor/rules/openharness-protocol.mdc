@@ -24,4 +24,4 @@ This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). 
 
 ## When changing the wire format
 
-Update in one PR: `docs/PROTOCOL.md`, `docs/PROTOCOL.zh.md`, `schema/openharness-v1.draft.json`, and **relevant `examples/*.json`** so fixtures stay valid.
+Update in one PR: `docs/PROTOCOL.md`, `docs/PROTOCOL.zh.md`, `schema/openharness-v1.draft.json`, and **relevant `examples/*.json`** so fixtures stay valid. Run **`python scripts/validate_examples.py`** after **`pip install -r requirements-dev.txt`** (CI enforces the same).
