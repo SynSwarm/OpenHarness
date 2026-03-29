@@ -33,6 +33,7 @@ This adapter is **not** a service operated by the OpenHarness project. It is mea
 2. **Schema:** either set **`OPENHARNESS_SCHEMA_PATH`** to a local copy of **`openharness-v1.draft.json`**, or place that file **next to these scripts** as **`./openharness-v1.draft.json`** (same directory as `openharness-adapter-openclaw.py`). Copy the schema from the **OpenHarness** protocol repository (path **`schema/openharness-v1.draft.json`**) or your fork.
 3. Optional: `pip install jsonschema` for **`validate`** / **`--validate`**.
 4. Run **`bridge-server`**, **`demo-server`**, optional **`pair-server`** (example SQLite pairing), or your process manager pointing at **`openharness-adapter-openclaw.py`**.
+5. **Public HTTPS gateway (optional):** **[deploy/deskharness-gateway/README.md](./deploy/deskharness-gateway/README.md)** — Caddy or nginx in front of **`pair-server`** + **`bridge-server`** (e.g. `gw.deskharness.com`); **no extra Python gateway** — TLS + path routing only.
 
 ### Monorepo vs independent repository
 
@@ -219,6 +220,8 @@ The mock Engine returns a minimal **`render_message`** directive. Your real TV a
 **运行位置：** 本适配器 **不是** OpenHarness 官方替你托管的服务；应由 **各使用方** 在 **自有 OpenClaw 服务器旁**（同机、同 Docker 网络或相邻 VM）**本地下载/安装**。规范与 Schema 仍以 **OpenHarness 协议仓库** 为准。
 
 **独立安装：** 可复制本目录，设置 **`OPENHARNESS_SCHEMA_PATH`**，或将 **`openharness-v1.draft.json`** 放在与本脚本 **同一目录**；可选 **`pip install jsonschema`**。详见上文 **Standalone install**。
+
+**公网 HTTPS 网关（可选）：** **[deploy/deskharness-gateway/README.md](./deploy/deskharness-gateway/README.md)** — Caddy/nginx 反代到 **`pair-server` + `bridge-server`**；**无**额外 Python 网关逻辑。
 
 **是否独立仓库：** 若面向「用户只拉适配器、不克隆整个协议仓」，建议 **单独建仓库** 并发 release / PyPI；协议与 Schema 通过 README **链接 + 拷贝 schema** 对齐。亦可持续放在 OpenHarness 的 **`adapters/`** 下维护。
 

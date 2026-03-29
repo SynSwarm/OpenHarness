@@ -25,8 +25,9 @@ This directory holds **orientation** for that product line. **Concrete developme
 | 5 | **[guides/shell-at-scale.md](../../docs/guides/shell-at-scale.md)** | Where Shell docs live at scale; links to external repos |
 | 6 | **[profiles/http-transport.md](../../docs/profiles/http-transport.md)** | Illustrative HTTP framing (if your Shell uses HTTP to the Engine) |
 | 7 | **[guides/device-pairing-session.md](../../docs/guides/device-pairing-session.md)** | Optional: one-time TV pairing codes + long-lived device credentials + stable `session_id` |
+| 8 | **[guides/openclaw-operator-kit.md](../../docs/guides/openclaw-operator-kit.md)** | Optional: **HTTP gateway** beside OpenClaw (`pair-server` + `bridge-server`), public URL sketch, **§8 Shell handoff** — same gateway is **Shell ↔ Engine** generic, not TV-only |
 
-Engine URL, TLS, and **`credential_ref`** resolution stay in **deployment / gateway** docs — not redefined here.
+Engine URL, TLS, and **`credential_ref`** resolution stay in **deployment / gateway** docs — not redefined here. If you deploy **OpenClaw + this repo’s bridge**, use the operator kit for **which URL the TV calls** (pairing vs `/v1/openharness`) and what to persist on device.
 
 ---
 

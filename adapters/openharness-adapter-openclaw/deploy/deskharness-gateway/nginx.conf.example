@@ -1,0 +1,49 @@
+# Snippet: TLS + path routing for gw.deskharness.com
+# Merge into your server { } block or include from sites-enabled.
+# Upstreams: pair-server 127.0.0.1:8790, bridge-server 127.0.0.1:8788
+
+upstream openharness_pair {
+    server 127.0.0.1:8790;
+}
+
+upstream openharness_bridge {
+    server 127.0.0.1:8788;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name gw.deskharness.com;
+
+    # ssl_certificate /path/to/fullchain.pem;
+    # ssl_certificate_key /path/to/privkey.pem;
+
+    location /pair/ {
+        proxy_pass http://openharness_pair;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location = /v1/openharness {
+        proxy_pass http://openharness_bridge;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location = /openharness {
+        proxy_pass http://openharness_bridge;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    location = /health {
+        proxy_pass http://openharness_bridge;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+    }
+}

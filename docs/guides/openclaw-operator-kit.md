@@ -4,6 +4,8 @@
 
 **Language:** English first · [中文](#中文)
 
+**Contents:** Gateway scope · §1–2 Mental model · §3 Skill pack · §4 `OPENCLAW_HTTP_URL` · §5–6 Pairing / launcher · §7 Public URLs (`deskharness.com`) · §8 Shell handoff · 中文
+
 ---
 
 ## Gateway scope — Shell ↔ Engine, not “OpenClaw + TV only”
@@ -130,6 +132,22 @@ This section is **one concrete deployment sketch** for an operator who controls 
 
 **Alternate layout:** `https://api.deskharness.com/...` or `https://deskharness.com/gw/...` — equivalent if your reverse proxy preserves the **`pair-server`** / **`bridge-server`** path contract.
 
+**Reference files (Caddy / nginx / launcher):** **[adapters/openharness-adapter-openclaw/deploy/deskharness-gateway](../../adapters/openharness-adapter-openclaw/deploy/deskharness-gateway/README.md)** — TLS reverse proxy only; no duplicate Python gateway logic.
+
+---
+
+## 8. Next steps: Shell implementation (e.g. Android TV)
+
+When the **operator gateway** (pairing + `bridge-server`) is running, remaining work is **Shell-side** — not OpenClaw core changes.
+
+| Track | Action |
+|-------|--------|
+| **Android TV** | Follow **[openharness-adapter-android-tv](../../adapters/openharness-adapter-android-tv/README.md)** — separate app repo, PROTOCOL + `render_message`, §11; persist **gateway URL**, **Bearer token**, **`session_id`**. |
+| **Pairing UX** | `POST /pair/create` → show `code` → after confirm, store **long-lived token**; then `POST /v1/openharness` with **`Authorization: Bearer …`**. |
+| **v1 dialogue** | Build conformant **`request`**, parse **`action_directives`** for **`render_message`**; unknown **`action_type`** → no side effects. |
+
+**OpenClaw** stays behind **`OPENCLAW_HTTP_URL`** on the server; the TV **never** calls OpenClaw HTTP directly.
+
 ---
 
 ## 中文
@@ -177,10 +195,22 @@ This section is **one concrete deployment sketch** for an operator who controls 
 
 也可用 **`api.deskharness.com`** 或主域路径前缀，只要路径语义与示例服务一致。
 
+**参考部署（Caddy / nginx / 启动脚本）：** **[deploy/deskharness-gateway](../../adapters/openharness-adapter-openclaw/deploy/deskharness-gateway/README.md)** — 公网侧仅为 **TLS + 反代**，业务仍是 **`pair-server` + `bridge-server`**。
+
+### 后续：Shell 端开发（如 Android TV）
+
+网关（配对 + **`bridge-server`**）就绪后，剩余工作在 **Shell**（如 **Android TV 应用**），**不是** 改 OpenClaw 本体。
+
+- **入口：** **[openharness-adapter-android-tv](../../adapters/openharness-adapter-android-tv/README.md)**（独立 APK 工程；本仓仅指引）。
+- **配对：** `POST /pair/create` → 展示码 → 确认后存 **长期 token** → `POST /v1/openharness` 带 **Bearer**。
+- **持久化：** 网关 **HTTPS URL**、**token**、**`session_id`**（多轮对话）。
+- **v1：** 解析 **`render_message`**；未知 **`action_type`** 按 §11 **无副作用**。
+
 ---
 
 ## See also
 
 - **[adapters/openharness-adapter-openclaw/README.md](../../adapters/openharness-adapter-openclaw/README.md)** — commands, env vars, `pair-*`, `bridge-*`
+- **[adapters/openharness-adapter-android-tv/README.md](../../adapters/openharness-adapter-android-tv/README.md)** — TV Shell placeholder + checklist (app lives in a separate repo)
 - **[device-pairing-session.md](./device-pairing-session.md)** — product-level pairing patterns
 - **[implementer-orientation.md](./implementer-orientation.md)** — TV-agnostic scope, network, pairing levels

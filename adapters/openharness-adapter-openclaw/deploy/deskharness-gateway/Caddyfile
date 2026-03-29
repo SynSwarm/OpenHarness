@@ -1,0 +1,33 @@
+# Public HTTPS gateway for gw.deskharness.com → local pair-server + bridge-server
+# (Reference only; not normative. See README.md in this folder.)
+#
+# Prerequisites:
+#   DNS A/AAAA: gw.deskharness.com → this machine
+#   Backends:  pair-server :8790, bridge-server :8788 (use start-backends.sh)
+#
+# Run:  caddy run --config Caddyfile
+# Dev:  caddy run --config Caddyfile --adapter caddyfile  (same)
+
+gw.deskharness.com {
+	encode gzip zstd
+
+	# Pairing API (SQLite example pair-server)
+	handle /pair/* {
+		reverse_proxy 127.0.0.1:8790
+	}
+
+	# OpenHarness → OpenClaw bridge
+	handle /v1/openharness {
+		reverse_proxy 127.0.0.1:8788
+	}
+	handle /openharness {
+		reverse_proxy 127.0.0.1:8788
+	}
+
+	# Single health for ops (bridge process); pair also exposes GET /pair/health via /pair/*
+	handle /health {
+		reverse_proxy 127.0.0.1:8788
+	}
+
+	respond "Not found" 404
+}
