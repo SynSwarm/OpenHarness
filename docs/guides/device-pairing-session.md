@@ -26,6 +26,8 @@ A common pattern (e.g. TV + OpenClaw server):
 
 **Length:** pick one fixed length (e.g. 6 or 8 characters) in product docs; avoid mixing lengths.
 
+**Optional device binding:** Some products also send an **opaque device fingerprint** (e.g. hash of stable hardware or app identifiers) when the user confirms the code on the server, so the issued credential is bound to **that** TV. This is **not** a PROTOCOL requirement; names and formats are **product-defined** (pairing API and/or `extensions` if you use them).
+
 This flow is **compatible** with OpenHarness: the **pairing step** is usually implemented as your **own HTTPS (or internal) pairing API**, not as a required global standard inside every `request` body.
 
 ---

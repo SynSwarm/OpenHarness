@@ -45,18 +45,31 @@
 
 ---
 
-## 4. Pre-answers to common “discovery” questions
+## 4. TV OS, network, and pairing (explicit — stop guessing)
 
-These are **product** answers; defaults assume a **minimal dialogue v1** on **LAN** (no TLS required for first lab iteration per your policy).
+These points are **clarifications for implementers**, not new normative rules. **Conformance** = valid OpenHarness JSON + behavior in **[PROTOCOL.md](../PROTOCOL.md)**. Everything below is **product choice**.
 
-| Question | Default framing |
-|----------|-----------------|
-| What TV type? | Your choice; **Android TV** is a common target. The protocol only needs **HTTP + JSON** from the Shell. |
-| Remote control / playback state? | Optional **later** via new `action_type` / `environment_state`; v1 can be **text Q&A only**. |
-| Language on server? | This adapter is **Python**; OpenClaw may use any stack for its HTTP API. |
-| Language on TV? | Typically **Kotlin/Java** for Android TV; not constrained by OpenHarness. |
-| Same LAN as OpenClaw? | Typical for v1 lab; **pairing** flow is optional — see **pair-server** example and pairing guide. |
-| Need pairing codes? | Only if **you** want device binding; see **[device-pairing-session.md](./device-pairing-session.md)**. |
+### 4.1 TV type / OS — **not part of protocol conformance**
+
+- **Android TV, Linux TV (e.g. Ubuntu embedded), Web-based TV UI, or other** — all acceptable if the device implements a **Shell** that can **HTTP(S) POST** JSON and parse **`response`**.
+- **Interoperability does not depend on TV brand or OS.** Do not treat “which TV?” as a blocker: choose your stack, then map **`context`** and **`shell`** honestly.
+- **Python on the TV** is rare in production (more common on server); **Kotlin/Java** is typical for Android TV — **irrelevant** to whether the wire message is valid.
+
+### 4.2 Network — **LAN, internet, or both**
+
+- **Many real deployments use internet access** (public or NAT’d HTTPS, reverse proxy, DNS). The TV or phone reaches your gateway **over the WAN** in that case.
+- **LAN-only** (TV and server on the same subnet) is also valid — common for **lab** or **enterprise intranet**.
+- The protocol **does not** require a specific topology. You only need a **reachable URL** for the Shell to **`POST`** the **`request`** (and TLS policy per your security team).
+
+### 4.3 Pairing — **optional levels**
+
+| Level | When to use | Notes |
+|-------|-------------|--------|
+| **Minimal (dev / trusted lab)** | Hardcoded or pre-provisioned **device token** on TV — **no** on-screen code. Fastest for bring-up. |
+| **Recommended (consumer / shared devices)** | TV **displays a pairing code**; user enters it on **server / CLI / mobile**; server issues **long-lived token**. See **[device-pairing-session.md](./device-pairing-session.md)** and **`pair-server`** under **[openharness-adapter-openclaw](../../adapters/openharness-adapter-openclaw/README.md)**. |
+| **With device fingerprint (optional)** | TV computes a **stable opaque identifier** (e.g. fingerprint/hash of install-bound ID — avoid raw secrets in logs). Send it during **confirm** or in **`extensions`** / **`context`** per **your** integration doc; server binds **pairing code + fingerprint** so the wrong physical TV cannot steal a code. **Feasible and recommended** for stronger binding; **not** normative field names in PROTOCOL — document in your product spec. |
+
+**Remote control / playback state** for v1: optional **later** via **`action_type`** / **`environment_state`**; first version can be **text Q&A only**.
 
 ---
 
@@ -95,6 +108,15 @@ These are **product** answers; defaults assume a **minimal dialogue v1** on **LA
 
 - **`adapters/openharness-adapter-openclaw/`**：**服务端** Python（CLI、桥、配对**示例**），**不是** 电视 APK。  
 - **电视客户端**：**另起工程**（如 Android TV）；指引见 **[openharness-adapter-android-tv](../../adapters/openharness-adapter-android-tv/README.md)**。
+
+### 电视系统、网络、配对（明确答复）
+
+- **电视类型 / 系统：** **与协议符合性无关**。Android TV、Linux 电视、Web TV 等均可，只要实现 **Shell**（能 **HTTP(S) 发 JSON**、解析 **`response`**）。**不因品牌或 OS 阻塞集成**；Kotlin/Java 或别的语言由产品选。
+- **网络：** **常见**为 **外网可达**（HTTPS、反代、域名）；**仅局域网** 也成立（实验或内网）。协议 **不规定** 拓扑，只要 Shell 能访问你们公布的 **`request` POST 地址**。
+- **配对：**  
+  - **极简：** 预置 / 硬编码 token，无界面配对。  
+  - **推荐：** 电视 **显示配对码**，服务端 / CLI **确认后发长期 token** → 见 **[device-pairing-session.md](./device-pairing-session.md)**。  
+  - **可选加强：** 电视侧计算 **稳定设备指纹**（不透明哈希/设备 ID），与验码 **一起** 提交，服务端绑定 **码 + 指纹** — **可行**，字段名由产品约定（可放 **`extensions`**），**非** PROTOCOL 强制字段。
 
 ### 实现清单（Shell）
 

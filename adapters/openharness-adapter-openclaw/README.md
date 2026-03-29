@@ -14,9 +14,10 @@ Read **[implementer-orientation.md](../../docs/guides/implementer-orientation.md
 |----------|-------------------|
 | Is this folder the **TV Shell app**? | **No.** This is **server-side** Python beside OpenClaw (`bridge-server`, pairing **examples**, CLI). The **TV client** is a **separate** codebase → **[openharness-adapter-android-tv](../openharness-adapter-android-tv/README.md)**. |
 | Must I build a **full Harness Engine** (SOP, huge orchestration)? | **No** for v1 dialogue. **`bridge-server` + OpenClaw HTTP** is enough to return **`render_message`**. |
-| Which **TV** (Xiaomi, TCL, Apple TV, …)? | **Your product choice.** The spec cares only that the Shell sends **valid OpenHarness JSON**; Android TV is a common target. |
-| **Python on TV** vs **Kotlin**? | This adapter is **Python** on the **server**. TV is often **Kotlin/Java**; both are fine. |
-| **LAN vs Internet**, **pairing**? | Deployment choice; see **[device-pairing-session.md](../../docs/guides/device-pairing-session.md)** and optional **`pair-server`** here. |
+| **TV type / OS** (Android TV, Linux TV, …)? | **Not part of protocol conformance** — any Shell that can **HTTP(S) + JSON** works. Details: **[implementer-orientation.md §4.1](../../docs/guides/implementer-orientation.md)**. |
+| **Internet vs LAN**? | **Internet-accessible gateways are common** in production; **LAN-only** is fine for lab. Not mandated by the spec — **[§4.2](../../docs/guides/implementer-orientation.md)**. |
+| **Pairing** (hardcoded token vs code on TV vs fingerprint)? | All **product choices**: minimal token, or **TV shows code + server confirms**, or add **opaque device fingerprint** with confirm — **[§4.3](../../docs/guides/implementer-orientation.md)**, **[device-pairing-session.md](../../docs/guides/device-pairing-session.md)**, optional **`pair-server`** here. |
+| **Python on TV** vs **Kotlin**? | This adapter is **Python** on the **server**. TV is often **Kotlin/Java**; **irrelevant** to wire validity. |
 
 ---
 
