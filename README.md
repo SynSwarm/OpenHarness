@@ -27,7 +27,9 @@
 | **Shell-at-scale integration guide (meta, informative)** | [docs/guides/shell-at-scale.md](./docs/guides/shell-at-scale.md) |
 | **IM/bot Shell profile (informative)** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **HTTP transport hints (informative)** | [docs/profiles/http-transport.md](./docs/profiles/http-transport.md) |
+| **Lark/Feishu CLI profile (informative)** | [docs/profiles/feishu-lark-cli.md](./docs/profiles/feishu-lark-cli.md) |
 | **Example messages (golden JSON)** | [examples/README.md](./examples/README.md) |
+| **Shell-side adapters (optional code, informative)** | [adapters/README.md](./adapters/README.md) |
 | **JSON Schema (draft)** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
 Unless a file header says otherwise, spec text and schemas in this repository are licensed under the [MIT License](./LICENSE).
@@ -189,7 +191,9 @@ The OpenHarness **protocol** stays open and free. Production deployments often n
 | **规模化 Shell 集成指引（元文档，资料性）** | [docs/guides/shell-at-scale.md](./docs/guides/shell-at-scale.md) |
 | **IM/机器人 Shell Profile（资料性）** | [docs/profiles/im-bot-shell.md](./docs/profiles/im-bot-shell.md) |
 | **HTTP 传输提示（资料性）** | [docs/profiles/http-transport.md](./docs/profiles/http-transport.md) |
+| **飞书 / Lark CLI 对接提示（资料性）** | [docs/profiles/feishu-lark-cli.md](./docs/profiles/feishu-lark-cli.md) |
 | **示例消息（金样 JSON）** | [examples/README.md](./examples/README.md) |
+| **Shell 侧适配器（可选代码，资料性）** | [adapters/README.md](./adapters/README.md) |
 | **JSON Schema（草案）** | [schema/openharness-v1.draft.json](./schema/openharness-v1.draft.json) |
 
 除文件头另有说明外，本仓库中的规范文本与 Schema 与根目录 [LICENSE](./LICENSE)（MIT）一致。

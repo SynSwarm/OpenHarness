@@ -12,6 +12,7 @@ This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). 
 - **Normative:** `docs/PROTOCOL.md` (English, authoritative) and `docs/PROTOCOL.zh.md` (Chinese mirror).
 - **Schema:** `schema/openharness-v1.draft.json` — validate request vs response messages **separately** (root is `oneOf`).
 - **Scope / layering:** `docs/SCOPE.md`, `docs/OVERVIEW.md` (informative).
+- **Optional Shell-side adapters (code):** `adapters/README.md` — bridges to platforms that do not natively speak OpenHarness; not normative.
 
 ## Implementing adapters or examples (humans + AI)
 
@@ -19,6 +20,7 @@ This repo defines the **OpenHarness wire protocol** (Shell ↔ Harness Engine). 
 - For **Shells at scale** (CLI, bots, multi-tenant surfaces): where informative docs belong vs **PROTOCOL**, see **`docs/guides/shell-at-scale.md`**.
 - Use **`examples/minimal/`** and **`examples/im-cli/`** as golden JSON references; do not invent fields that contradict PROTOCOL.
 - For IM/bot Shell responsibilities (mapping platform IDs into `context`, etc.), see **`docs/profiles/im-bot-shell.md`**.
+- For **Lark/Feishu Open Platform CLI** ([larksuite/cli](https://github.com/larksuite/cli)) ↔ OpenHarness mapping notes, see **`docs/profiles/feishu-lark-cli.md`**.
 - **§11 unknown `action_type`:** never execute side effects for unknown directive types.
 - **Attachments:** references only in the body — no large base64 payloads (`PROTOCOL` §9.1).
 - **Capabilities:** handle `capability_denials` / `supported_capabilities`; avoid silent half-features.

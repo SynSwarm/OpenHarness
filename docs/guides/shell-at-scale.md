@@ -41,6 +41,7 @@ This is **documentation ergonomics**, not a new protocol tier.
 | HTTP header hints | [http-transport.md](../profiles/http-transport.md) | Optional; core remains transport-agnostic. |
 | AI / third-party checklists, golden JSON pointers | [AI_INTEGRATION.md](./AI_INTEGRATION.md) | Already linked from README. |
 | **Platform-specific** mapping tables (e.g. a particular chat vendor’s `chat_id` → `conversation_id`) | **Prefer** Shell/adapter product repo; **or** an optional appendix PR under **docs/profiles/**, clearly marked **informative** and **non-normative** | Avoid turning the OpenHarness repo into a full mirror of a vendor’s Open Platform manual. |
+| Lark/Feishu **official CLI** ([larksuite/cli](https://github.com/larksuite/cli)) ↔ OpenHarness | [feishu-lark-cli.md](../profiles/feishu-lark-cli.md) | Example of an informative vendor-facing profile; still not normative. |
 
 ---
 
@@ -77,7 +78,9 @@ CLI/机器人**规模大**、会话与附件易错、希望有「如何填 `cont
 | 职责划分（映射、传输、附件、Engine 真值表） | [im-bot-shell.md](../profiles/im-bot-shell.md) | 已存在，厂商中立。 |
 | HTTP 头与追踪 | [http-transport.md](../profiles/http-transport.md) | 可选。 |
 | AI/第三方清单与金样 | [AI_INTEGRATION.md](./AI_INTEGRATION.md) | 已有。 |
+| **可选** Shell 侧适配器/桥接代码（Python、Android TV 等） | [adapters/README.md](../../adapters/README.md) | 资料性说明；重项目可独立仓库并在此登记链接。 |
 | **某厂商** 字段级映射表 | **优先** 产品仓；或 **可选** 在 **docs/profiles/** 下以附录 PR 贡献，标明 **非规范** | 避免本仓变成某开放平台手册的全量镜像。 |
+| 飞书 / Lark **官方 CLI**（[larksuite/cli](https://github.com/larksuite/cli)）↔ OpenHarness | [feishu-lark-cli.md](../profiles/feishu-lark-cli.md) | 资料性厂商向 profile 示例；仍非规范。 |
 
 ### 与「规模化 Shell 集成」的可读性
 

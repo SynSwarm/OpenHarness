@@ -8,7 +8,7 @@ Thank you for helping improve the OpenHarness protocol and documentation.
 - **Chinese mirror:** `docs/PROTOCOL.zh.md` — must stay aligned with the English spec.  
 - **JSON Schema:** `schema/openharness-v1.draft.json` — must match PROTOCOL.
 
-Informative docs (`docs/SCOPE.md`, `docs/OVERVIEW.md`, `docs/guides/`, `examples/`) **do not** override PROTOCOL.
+Informative docs (`docs/SCOPE.md`, `docs/OVERVIEW.md`, `docs/guides/`, `examples/`, `adapters/README.md`) **do not** override PROTOCOL. Optional Shell-side adapter **code** may live under `adapters/<name>/` or in a **linked external repository** — see **`adapters/README.md`**.
 
 ## Implementers (third-party Harness / Shell / AI-assisted coding)
 
