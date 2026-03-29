@@ -71,6 +71,8 @@ If **OpenClaw** already exposes answers over **HTTP** (or you add a thin HTTP fa
 | **`OPENCLAW_HTTP_HEADERS_JSON`** | Optional extra headers as JSON object. |
 | **`OPENCLAW_HTTP_TIMEOUT`** | Seconds (default `120`). |
 
+**Where OpenClaw runs:** **`OPENCLAW_HTTP_URL`** is often `http://127.0.0.1:…` when OpenClaw is **on the same host** as `bridge-server`. If OpenClaw runs on the **end user’s** server instead, set it to an **HTTPS URL reachable from the bridge** (and use auth headers as needed). The reference bridge uses **one** URL per process — **per-tenant OpenClaw hosts** require your own routing layer.
+
 ### Example pairing / account gateway (SQLite) — **reference only**
 
 The OpenHarness protocol **does not** require a specific pairing implementation. This folder includes an **optional example**: **`pair-server`** stores pending codes and issued device tokens in **SQLite** (stdlib), with **`POST /pair/create`** and **`POST /pair/confirm`**. Helpers **`pair-create`** and **`pair-confirm`** match the demo flow but default to **`http://127.0.0.1:8790`**.
@@ -217,7 +219,7 @@ The mock Engine returns a minimal **`render_message`** directive. Your real TV a
 
 ## 中文
 
-**运行位置：** 本适配器 **不是** OpenHarness 官方替你托管的服务；应由 **各使用方** 在 **自有 OpenClaw 服务器旁**（同机、同 Docker 网络或相邻 VM）**本地下载/安装**。规范与 Schema 仍以 **OpenHarness 协议仓库** 为准。
+**运行位置：** 本适配器 **不是** OpenHarness 官方替你托管的服务；应由 **各使用方** **本地下载/安装**。**`bridge-server`** 可与 OpenClaw **同机**（`OPENCLAW_HTTP_URL` 用 `127.0.0.1`），也可部署在 **运营方网关** 上，通过 **`OPENCLAW_HTTP_URL`** 访问 **用户自有服务器** 上的 OpenClaw（须网络可达 + 鉴权）。规范与 Schema 仍以 **OpenHarness 协议仓库** 为准。
 
 **独立安装：** 可复制本目录，设置 **`OPENHARNESS_SCHEMA_PATH`**，或将 **`openharness-v1.draft.json`** 放在与本脚本 **同一目录**；可选 **`pip install jsonschema`**。详见上文 **Standalone install**。
 

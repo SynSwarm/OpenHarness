@@ -10,7 +10,14 @@ This folder is **not** a second HTTP stack in Python. The “gateway” is **TLS
 | `/v1/openharness`, `/openharness` | `bridge-server` **127.0.0.1:8788** | OpenHarness ↔ OpenClaw |
 | `/health` | `bridge-server` **127.0.0.1:8788** | Liveness (bridge) |
 
-**OpenClaw** is reached **only** from `bridge-server` via **`OPENCLAW_HTTP_URL`** (usually `http://127.0.0.1:…` on the same host), not through this public hostname.
+**OpenClaw** is **not** on this public hostname. Only **`pair-server`** and **`bridge-server`** sit behind `gw.deskharness.com`. The bridge calls OpenClaw via **`OPENCLAW_HTTP_URL`**:
+
+| Where OpenClaw runs | Typical `OPENCLAW_HTTP_URL` |
+|----------------------|------------------------------|
+| **Same machine** as `bridge-server` (lab / single-tenant all-in-one) | `http://127.0.0.1:PORT/…` |
+| **User’s / tenant’s server** (OpenClaw **not** in deskharness’s rack) | **HTTPS URL reachable from this gateway**, e.g. `https://user-host.example/v1/chat/completions` — plus auth headers if required |
+
+The reference **`bridge-server`** reads **one** URL from the environment. **Per-user OpenClaw endpoints** need **your** routing (multiple bridge instances, a BFF, or a custom gateway) — not something this Caddyfile solves by itself.
 
 ---
 
@@ -20,7 +27,10 @@ From this repository:
 
 ```bash
 chmod +x start-backends.sh
-export OPENCLAW_HTTP_URL="http://127.0.0.1:YOUR_OPENCLAW_PORT/..."   # your chat HTTP API
+# Same host as OpenClaw:
+# export OPENCLAW_HTTP_URL="http://127.0.0.1:YOUR_OPENCLAW_PORT/..."
+# OpenClaw on the user's server (reachable from this host):
+export OPENCLAW_HTTP_URL="https://user-openclaw.example/v1/chat/completions"
 ./start-backends.sh
 ```
 

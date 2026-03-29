@@ -128,7 +128,7 @@ This section is **one concrete deployment sketch** for an operator who controls 
 - **`PAIR_BASE_URL`** = `https://gw.deskharness.com` (any Shell calls `pair-create` against this origin).
 - **`OPENHARNESS_POST_URL`** = `https://gw.deskharness.com/v1/openharness` (Bearer token from pairing; same pattern as `bridge-server`).
 
-**OpenClaw** remains **on the server side** behind the bridge; **`OPENCLAW_HTTP_URL`** is usually **`http://127.0.0.1:…`** on the same machine as `bridge-server`, **not** a public URL.
+**OpenClaw** is **not** exposed on the Shell-facing hostname. The bridge calls it via **`OPENCLAW_HTTP_URL`**: use **`http://127.0.0.1:…`** only when OpenClaw runs **on the same host** as `bridge-server`. If OpenClaw runs on the **end user’s server** (not the operator’s gateway host), set **`OPENCLAW_HTTP_URL`** to a URL **reachable from the gateway** (usually **HTTPS**), with **`OPENCLAW_HTTP_AUTHORIZATION`** / headers as needed. The reference bridge uses **one** URL per process — **multi-tenant** routing to many OpenClaw hosts is **your** product layer.
 
 **Alternate layout:** `https://api.deskharness.com/...` or `https://deskharness.com/gw/...` — equivalent if your reverse proxy preserves the **`pair-server`** / **`bridge-server`** path contract.
 
@@ -146,7 +146,7 @@ When the **operator gateway** (pairing + `bridge-server`) is running, remaining 
 | **Pairing UX** | `POST /pair/create` → show `code` → after confirm, store **long-lived token**; then `POST /v1/openharness` with **`Authorization: Bearer …`**. |
 | **v1 dialogue** | Build conformant **`request`**, parse **`action_directives`** for **`render_message`**; unknown **`action_type`** → no side effects. |
 
-**OpenClaw** stays behind **`OPENCLAW_HTTP_URL`** on the server; the TV **never** calls OpenClaw HTTP directly.
+**OpenClaw** is reached only by **`bridge-server`**, via **`OPENCLAW_HTTP_URL`** (same host **or** user’s remote server); the TV **never** calls OpenClaw HTTP directly.
 
 ---
 
@@ -191,7 +191,7 @@ When the **operator gateway** (pairing + `bridge-server`) is running, remaining 
 | 确认配对 | `POST https://gw.deskharness.com/pair/confirm` |
 | OpenHarness 对话 | `POST https://gw.deskharness.com/v1/openharness` |
 
-反代按路径转到本机 **`pair-server`** / **`bridge-server`**（或你们自研的等价服务）即可。**OpenClaw** 若使用，仍在桥后内网；**不是** 所有部署都必须用 OpenClaw。
+反代按路径转到本机 **`pair-server`** / **`bridge-server`**（或你们自研的等价服务）即可。**OpenClaw** 不在公网网关域名上暴露；由 **`bridge-server`** 用 **`OPENCLAW_HTTP_URL`** 去调——可与桥 **同机**（`127.0.0.1`），也可在 **用户自有服务器**（网关能访问的 HTTPS 地址）。**不是** 所有部署都必须用 OpenClaw；多租户多 OpenClaw 地址需 **你们自建路由**。
 
 也可用 **`api.deskharness.com`** 或主域路径前缀，只要路径语义与示例服务一致。
 
@@ -199,7 +199,7 @@ When the **operator gateway** (pairing + `bridge-server`) is running, remaining 
 
 ### 后续：Shell 端开发（如 Android TV）
 
-网关（配对 + **`bridge-server`**）就绪后，剩余工作在 **Shell**（如 **Android TV 应用**），**不是** 改 OpenClaw 本体。
+网关（配对 + **`bridge-server`**）就绪后，剩余工作在 **Shell**（如 **Android TV 应用**），**不是** 改 OpenClaw 本体。**OpenClaw** 可在 **用户自有服务器**；由 **`bridge-server`** 上的 **`OPENCLAW_HTTP_URL`** 指向该地址（非 TV 直连）。
 
 - **入口：** **[openharness-adapter-android-tv](../../adapters/openharness-adapter-android-tv/README.md)**（独立 APK 工程；本仓仅指引）。
 - **配对：** `POST /pair/create` → 展示码 → 确认后存 **长期 token** → `POST /v1/openharness` 带 **Bearer**。
